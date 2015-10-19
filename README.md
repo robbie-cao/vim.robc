@@ -55,7 +55,7 @@ Enjoy!
 
 
 ## Know Issues
-1. MarkdownPreview has problem during Vim start after update python with brew (brew update & brew install python).
+1. MarkdownPreview has problem during Vim start after update python with brew (brew update & brew install python). http://git.io/vCjBM
 2. InstantMarkdownPreview not work.
 
 
