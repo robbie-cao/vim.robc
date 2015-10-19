@@ -1131,3 +1131,8 @@ Bundle 'yuratomo/w3m.vim'
 Bundle 'svermeulen/vim-easyclip'
 " }
 
+" Gist
+" Creating gists (http://gist.github.com).
+" It require 'mattn/gist-vim'
+Bundle 'mattn/webapi-vim'
+Bundle 'mattn/gist-vim'
