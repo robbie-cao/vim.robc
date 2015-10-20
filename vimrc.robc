@@ -137,30 +137,6 @@ if 0
     " Move any option you dont want here
 endif
 
-
-" Automatically write a file when leaving a modified buffer.
-" Turn it off
-set noautowrite
-" Abbrev. of messages
-set shortmess+=filmnrxoOtT
-" Better unix/windows compatibility
-set viewoptions=folds,options,cursor,unix,slash
-" Allow for cursor beyond last character
-set virtualedit=onemore
-" Store a ton of history (default is 20)
-set history=1024
-
-set iskeyword-=.                    " '.' is an end of word designator
-set iskeyword-=#                    " '#' is an end of word designator
-set iskeyword-=-                    " '-' is an end of word designator
-
-set hidden                          " Allow buffer switching without saving
-set spell                           " Spell checking on
-
-if 0
-    " Move any option you dont want here
-endif
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Backup / Undo settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
