@@ -131,7 +131,7 @@ endif
 " 自动补全
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:ycm_enabled = 1
+let g:ycm_enabled = 0
 " YouCompleteMe
 " A fast, as-you-type, fuzzy-search code completion engine
 " 迄今为止用到的最好的自动VIM自动补全插件
@@ -1026,7 +1026,7 @@ if g:nginx_enabled
 endif
 " }
 
-let g:markdown_enabled = 1
+let g:markdown_enabled = 0
 let g:markdown_preview_enabled = 0
 " Markdown {
 if g:markdown_enabled
