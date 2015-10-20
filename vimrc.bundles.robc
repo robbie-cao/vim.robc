@@ -142,7 +142,7 @@ let g:ycm_enabled = 1
 if g:ycm_enabled
     Bundle 'Valloric/YouCompleteMe'
 
-    let s:ycm_python = 0
+    let s:ycm_python = 1
 
     " 默认Tab, S-Tab 和YCM自动补全冲突
     " Use C-n/p for next/prev
@@ -156,12 +156,12 @@ if g:ycm_enabled
     " 在字符串输入中也能补全
     let g:ycm_complete_in_strings = 1
     " 提示UltiSnips
-    let g:ycm_use_ultisnips_completer = 1
+    let g:ycm_use_ultisnips_completer = 0
     " 注释和字符串中的文字也会被收入补全
     let g:ycm_collect_identifiers_from_comments_and_strings = 1
     let g:ycm_collect_identifiers_from_tags_files = 1
     " 语言关键字补全, 不过python关键字都很短，所以，需要的自己打开
-    let g:ycm_seed_identifiers_with_syntax = 0
+    let g:ycm_seed_identifiers_with_syntax = 1
 
     " 跳转到定义处, 分屏打开
     let g:ycm_goto_buffer_command = 'horizontal-split'
@@ -218,7 +218,7 @@ endif
 " }
 
 
-let g:ultisnips_enabled = 1
+let g:ultisnips_enabled = 0
 " UltiSnips {
 " 代码片段快速插入
 if g:ultisnips_enabled
@@ -596,8 +596,8 @@ let g:gitgutter_enabled = 0
 let g:gitgutter_signs = 0
 let g:gitgutter_highlight_lines = 1
 nnoremap <Leader>gt :GitGutterToggle<CR>
-nnoremap <Leader>gs :GitGutterSignsToggle<CR>
-nnoremap <Leader>gl :GitGutterLineHighlightsToggle<CR>
+nnoremap <Leader>gst :GitGutterSignsToggle<CR>
+nnoremap <Leader>glt :GitGutterLineHighlightsToggle<CR>
 " }
 
 " gundo {
@@ -1027,15 +1027,21 @@ endif
 " }
 
 let g:markdown_enabled = 1
+let g:markdown_preview_enabled = 0
 " Markdown {
 if g:markdown_enabled
-    Bundle 'plasticboy/vim-markdown'
-    let g:vim_markdown_folding_disabled = 1
+    " Vim Markdown runtime files, included syntax highlighting and filetype plugins for Markdown
+    Bundle 'tpope/vim-markdown'
+    autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+    let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
 
-    " Markdown Preview
-    Bundle 'MikeCoder/markdown-preview.vim'
-    let g:MarkDownCSSDir='~/.vim/mdres'
-    map <Leader><Leader>md  :MarkdownPreview GitHub<CR>
+    " Markdown Preview {
+    if g:markdown_preview_enabled
+        Bundle 'MikeCoder/markdown-preview.vim'
+        let g:MarkDownCSSDir='~/.vim/mdres'
+        map <Leader><Leader>md  :MarkdownPreview GitHub<CR>
+    endif
+    " }
 
     " Instant Markdown
     " https://github.com/suan/vim-instant-markdown
