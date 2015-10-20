@@ -215,8 +215,8 @@ syntax enable
 set showmode
 " The commandbar is 2 high
 set cmdheight=2
-" How many tenths of a second to blink
-set mat=2
+" Bracket blinking
+set mat=5
 " Imediately show the search result
 set is
 
@@ -272,9 +272,7 @@ set splitbelow                  " Put the new window below the current
 set wildmenu                    ""
 
 set list                        " Show <tab> and eol
-set listchars=eol:\             " Ommit eol
-
-set list
+set listchars=eol:\             " Ommit eol (not display $ at end of line)
 
 
 " Ignore compiled files
@@ -287,6 +285,8 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Text and Formatting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set ffs=mac,unix,dos            " File format detection
+
 set nowrap                      " Not wrap long lines, 'set wrap' if need
 set autoindent                  " Auto indent
 set smartindent                 " Smart indent
@@ -325,6 +325,10 @@ set selection=inclusive
 " Remove trailing whitespaces and ^M chars
 autocmd FileType c,cpp,java,php,js,twig,xml,yml,vim autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 
+" Automatically reload files with mixed line-endings in DOS fileformat
+" http://vim.wikia.com/wiki/Automatically_reload_files_with_mixed_line-endings_in_DOS_fileformat
+" TODO
+" }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key (re)Mappings
@@ -442,48 +446,50 @@ call InitializeDirectories()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if OSX()
-    set csprg=/usr/local/bin/cscope
-else
-    set csprg=/usr/bin/cscope
-endif
-set cst
-set nocsverb
-if filereadable("cscope.out")    " db in current dir
-    cs add cscope.out
-elseif $CSCOPE_DB != ""        " db pointed to by env
-    cs add $CSCOPE_DB
-endif
+if has("cscope")
+    if OSX()
+        set csprg=/usr/local/bin/cscope
+    else
+        set csprg=/usr/bin/cscope
+    endif
+    set cst
+    set nocsverb
+    if filereadable("cscope.out")    " db in current dir
+        cs add cscope.out
+    elseif $CSCOPE_DB != ""        " db pointed to by env
+        cs add $CSCOPE_DB
+    endif
 
-" 's'   symbol: find all references to the token under cursor
-" 'g'   global: find global definition(s) of the token under cursor
-" 'c'   calls:  find all calls to the function name under cursor
-" 't'   text:   find all instances of the text under cursor
-" 'e'   egrep:  egrep search for the word under cursor
-" 'f'   file:   open the filename under cursor
-" 'i'   includes: find files that include the filename under cursor
-" 'd'   called: find functions that function under cursor calls
-map <Leader>cs :cs find s <C-R>=expand("<cword>")<CR><CR>
-map <Leader>cg :cs find g <C-R>=expand("<cword>")<CR><CR>
-map <Leader>sc :cs find c <C-R>=expand("<cword>")<CR><CR>
-map <Leader>ct :cs find t <C-R>=expand("<cword>")<CR><CR>
-map <Leader>ce :cs find e <C-R>=expand("<cword>")<CR><CR>
-map <Leader>cf :cs find f <C-R>=expand("<cfile>")<CR><CR>
-map <Leader>ci :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-map <Leader>cd :cs find d <C-R>=expand("<cword>")<CR><CR>
+    " 's'   symbol: find all references to the token under cursor
+    " 'g'   global: find global definition(s) of the token under cursor
+    " 'c'   calls:  find all calls to the function name under cursor
+    " 't'   text:   find all instances of the text under cursor
+    " 'e'   egrep:  egrep search for the word under cursor
+    " 'f'   file:   open the filename under cursor
+    " 'i'   includes: find files that include the filename under cursor
+    " 'd'   called: find functions that function under cursor calls
+    map <Leader>cs :cs find s <C-R>=expand("<cword>")<CR><CR>
+    map <Leader>cg :cs find g <C-R>=expand("<cword>")<CR><CR>
+    map <Leader>sc :cs find c <C-R>=expand("<cword>")<CR><CR>
+    map <Leader>ct :cs find t <C-R>=expand("<cword>")<CR><CR>
+    map <Leader>ce :cs find e <C-R>=expand("<cword>")<CR><CR>
+    map <Leader>cf :cs find f <C-R>=expand("<cfile>")<CR><CR>
+    map <Leader>ci :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    map <Leader>cd :cs find d <C-R>=expand("<cword>")<CR><CR>
 
-map <Leader><Leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-map <Leader><Leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-map <Leader><Leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-map <Leader><Leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-map <Leader><Leader>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-map <Leader><Leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-map <Leader><Leader>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-map <Leader><Leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+    map <Leader><Leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+    map <Leader><Leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+    map <Leader><Leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+    map <Leader><Leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+    map <Leader><Leader>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+    map <Leader><Leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+    map <Leader><Leader>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    map <Leader><Leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
-if has("quickfix")
-    "set cscopequickfix=s-,c-,d-,i-,t-,e-
-    set cscopequickfix=s0,c0,d0,i0,t0,e0
+    if has("quickfix")
+        "set cscopequickfix=s-,c-,d-,i-,t-,e-
+        set cscopequickfix=s0,c0,d0,i0,t0,e0
+    endif
 endif
 
 
