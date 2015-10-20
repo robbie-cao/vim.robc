@@ -268,6 +268,12 @@ set scrolljump=4                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
 set gdefault                    " The /g flag on :s substitutions by default
 set foldenable                  " Auto fold code
+set splitbelow                  " Put the new window below the current
+set wildmenu                    ""
+
+set list                        " Show <tab> and eol
+set listchars=eol:\             " Ommit eol
+
 set list
 
 
@@ -284,10 +290,22 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 set nowrap                      " Not wrap long lines, 'set wrap' if need
 set autoindent                  " Auto indent
 set smartindent                 " Smart indent
-set tabstop=4                   " Set <Tab> to 4 spaces
 set expandtab                   " Expand <Tab> to spaces
-set shiftwidth=4                " Use indents of 4 spaces
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
+
+let tabsize = 4
+execute "set tabstop=".tabsize
+execute "set shiftwidth=".tabsize
+execute "set softtabstop=".tabsize
+
+function! SetTabSize(size)
+    execute "set tabstop=".a:size
+    execute "set shiftwidth=".a:size
+    execute "set softtabstop=".a:size
+endfunction
+command! -nargs=1 Sts call SetTabSize(<f-args>)
+" Now if you want to change the current indent size to 4, just do:
+" :Sts 4
 
 " Only effective when 'encoding' is 'utf-8' or another Unicode encoding
 set ambiwidth=double
