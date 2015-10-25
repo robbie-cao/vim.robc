@@ -1152,6 +1152,8 @@ Bundle 'yuratomo/w3m.vim'
 " easyclip {
 " Simplified clipboard functionality for Vim
 Bundle 'svermeulen/vim-easyclip'
+let g:EasyClipAutoFormat = 1
+let g:EasyClipShareYanks = 1
 " }
 
 " Gist
