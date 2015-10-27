@@ -220,8 +220,7 @@ if has('statusline')
     " Broken down into easily includeable segments
     set statusline=
     set statusline+=%<%f\                    " Filename
-"   set statusline+=%w%h%m%r                 " Options
-    set statusline+=%h%m%r%=%b\ 0x%B\ \ %l,%c%V\ %P
+    set statusline+=%w%m%r%h                 " Options
     if !WINDOWS()
         set statusline+=%{fugitive#statusline()} " Git Hotness, !!! IT MAY MAKE VIM VERY SLOW !!!
     endif
