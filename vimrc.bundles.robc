@@ -73,19 +73,21 @@ let g:syntastic_ennabled = 1
 if g:syntastic_ennabled
     Bundle 'scrooloose/syntastic'
 
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
-    set statusline+=%*
+    " Statusline
+    let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
+
 
     " To see error location list
     let g:syntastic_loc_list_height          = 3
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list            = 1
+    let g:syntastic_always_populate_loc_list = 0
+    let g:syntastic_auto_loc_list            = 0
     let g:syntastic_check_on_open            = 1
     let g:syntastic_check_on_wq              = 0
     let g:syntastic_enable_highlighting      = 1
-    let g:syntastic_error_symbol             = '>>'
-    let g:syntastic_warning_symbol           = '>'
+    let g:syntastic_error_symbol             = '*E'
+    let g:syntastic_style_error_symbol       = '$E'
+    let g:syntastic_warning_symbol           = '*W'
+    let g:syntastic_style_warning_symbol     = '$W'
 
     let s:syntastic_feature_enabled = 0      " Disable the following settings
 
@@ -623,28 +625,16 @@ if g:airline_enabled
     if !exists('g:airline_symbols')
         let g:airline_symbols = {}
     endif
-    " unicode symbols
-    let g:airline_left_sep           = '»'
-    let g:airline_left_sep           = '▶'
-    let g:airline_left_alt_sep       = '❯'
-    let g:airline_right_sep          = '«'
-    let g:airline_right_sep          = '◀'
-    let g:airline_right_alt_sep      = '❮'
-    let g:airline_symbols.crypt      = '🔒'
-    let g:airline_symbols.linenr     = '␊'
-    let g:airline_symbols.linenr     = '␤'
-    let g:airline_symbols.linenr     = '¶'
-    let g:airline_symbols.branch     = '⎇'
-    let g:airline_symbols.paste      = 'ρ'
-    let g:airline_symbols.paste      = 'Þ'
-    let g:airline_symbols.paste      = '∥'
-    let g:airline_symbols.whitespace = 'Ξ'
-
-    let g:airline_detect_modified            = 1
-    let g:airline_detect_paste               = 1
-    let g:airline_detect_crypt=1
+    let g:airline_detect_modified  = 1
+    let g:airline_detect_paste     = 1
+    let g:airline_detect_crypt     = 1
     " 是否打开tabline
-    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#enabled      = 1
+    let g:airline#extensions#tabline#left_sep     = ' '
+    let g:airline#extensions#tabline#left_alt_sep = '|'
+
+    let g:airline_section_b = '%{strftime("%c")}'
+    let g:airline_section_y = 'BN: %{bufnr("%")}'
 endif
 " }
 
@@ -656,20 +646,20 @@ Bundle 'kien/rainbow_parentheses.vim'
 " \ ['black',       'SeaGreen3'],
 let g:rbpt_colorpairs = [
             \ ['brown',       'RoyalBlue3'],
-            \ ['Darkblue',    'SeaGreen3'],
+            \ ['darkblue',    'SeaGreen3'],
             \ ['darkgray',    'DarkOrchid3'],
-            \ ['darkgreen',   'firebrick3'],
+            \ ['darkgreen',   'FireBrick3'],
             \ ['darkcyan',    'RoyalBlue3'],
             \ ['darkred',     'SeaGreen3'],
             \ ['darkmagenta', 'DarkOrchid3'],
-            \ ['brown',       'firebrick3'],
+            \ ['brown',       'FireBrick3'],
             \ ['gray',        'RoyalBlue3'],
             \ ['darkmagenta', 'DarkOrchid3'],
-            \ ['Darkblue',    'firebrick3'],
+            \ ['darkblue',    'FireBrick3'],
             \ ['darkgreen',   'RoyalBlue3'],
             \ ['darkcyan',    'SeaGreen3'],
             \ ['darkred',     'DarkOrchid3'],
-            \ ['red',         'firebrick3'],
+            \ ['red',         'FireBrick3'],
             \ ]
 
 let g:rbpt_max = 16
