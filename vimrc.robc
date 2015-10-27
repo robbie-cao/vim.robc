@@ -201,7 +201,7 @@ set cursorline
 hi CursorLine   term=reverse cterm=NONE ctermbg=darkred     ctermfg=white guibg=darkred guifg=white
 " Highlight the current column
 set cursorcolumn
-hi CursorColumn term=reverse cterm=NONE ctermbg=darkgray    ctermfg=white guibg=darkred guifg=white
+hi CursorColumn term=reverse cterm=NONE ctermbg=darkmagenta ctermfg=white guibg=darkred guifg=white
 nnoremap <Leader>hl :set cursorline!<CR>
 nnoremap <Leader>hc :set cursorcolumn!<CR>
 
