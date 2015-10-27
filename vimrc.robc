@@ -220,12 +220,20 @@ if has('statusline')
     " Broken down into easily includeable segments
     set statusline=
     set statusline+=%<%f\                    " Filename
-    set statusline+=%w%h%m%r                 " Options
+"   set statusline+=%w%h%m%r                 " Options
+    set statusline+=%h%m%r%=%b\ 0x%B\ \ %l,%c%V\ %P
     if !WINDOWS()
         set statusline+=%{fugitive#statusline()} " Git Hotness, !!! IT MAY MAKE VIM VERY SLOW !!!
     endif
+    if g:syntastic_ennabled
+        set statusline+=%#warningmsg#
+        set statusline+=%{SyntasticStatuslineFlag()}
+        set statusline+=%*
+    endif
     set statusline+=\[%{&ff}/%Y]             " Filetype
     set statusline+=%=%-14.(%l,%c%V%)\%p%%   " Right aligned file nav info
+
+    hi StatusLine term=darkcyan cterm=NONE ctermbg=lightmagenta ctermfg=white guibg=darkred guifg=white
 endif
 
 set backspace=indent,eol,start  " Backspace for dummys
