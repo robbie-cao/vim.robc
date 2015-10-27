@@ -233,7 +233,7 @@ if has('statusline')
     set statusline+=\[%{&ff}/%Y]             " Filetype
     set statusline+=%=%-14.(%l,%c%V%)\%p%%   " Right aligned file nav info
 
-    hi StatusLine term=darkcyan cterm=NONE ctermbg=lightmagenta ctermfg=white guibg=darkred guifg=white
+    hi StatusLine term=reverse cterm=NONE ctermbg=lightmagenta ctermfg=white guibg=darkred guifg=white
 endif
 
 set backspace=indent,eol,start  " Backspace for dummys
