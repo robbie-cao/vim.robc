@@ -224,7 +224,7 @@ if has('statusline')
     if !WINDOWS()
         set statusline+=%{fugitive#statusline()} " Git Hotness, !!! IT MAY MAKE VIM VERY SLOW !!!
     endif
-    if g:syntastic_ennabled
+    if g:syntastic_enabled
         set statusline+=%#warningmsg#
         set statusline+=%{SyntasticStatuslineFlag()}
         set statusline+=%*
@@ -353,40 +353,6 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Tlist(taglist)
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if &diff
-    " Don't auto pen when compare two files
-    let Tlist_Auto_Open=0
-else
-    " Auto pen Tlist when open a file
-    let Tlist_Auto_Open=1
-endif
-
-let Tlist_Auto_Highlight_Tag=1
-let Tlist_Use_Right_Window=0
-let Tlist_Auto_Update=1
-let Tlist_File_Fold_Auto_Close=1
-let Tlist_Exit_OnlyWindow=1
-let Tlist_Highlight_Tag_On_BufEnter=1
-let Tlist_Use_SingleClick=0
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Trinity
-"
-" This small plugin is just an IDE manager to control the three plugins open and
-" close, and build them into a great IDE which works like the Source Insignt
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Open and close all the three plugins on the same time
-nmap <Leader>ta   :TrinityToggleAll<CR>
-" Open and close the srcexpl.vim separately
-nmap <Leader>ts   :TrinityToggleSourceExplorer<CR>
-" Open and close the taglist.vim separately
-nmap <Leader>tl   :TrinityToggleTagList<CR>
-" Open and close the NERD_tree.vim separately
-nmap <Leader>tt   :TrinityToggleNERDTree<CR>
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Buffer Explorer
@@ -484,13 +450,20 @@ set tags=tags;/
 
 
 " Format json
-nmap <Leader>fj   :%!python -m json.tool<CR>
+if has("python")
+    nmap <Leader>fj   :%!python -m json.tool<CR>
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" others
+" scm
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Display output of shell commands in new window
 " http://vim.wikia.com/wiki/Display_output_of_shell_commands_in_new_window
+" Now the version control tools can be used like this from Vim:
+" :Git add %                (The "%" expands to the current filename)
+" :Svn diff -c 1234
+" :Bzr log -l 10
+" :Hg annotate %
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
 command! -complete=file -nargs=* Git call s:RunShellCommand('git '.<q-args>)
 command! -complete=file -nargs=* Svn call s:RunShellCommand('svn '.<q-args>)
@@ -498,27 +471,27 @@ command! -complete=file -nargs=* Bzr call s:RunShellCommand('bzr '.<q-args>)
 command! -complete=file -nargs=* Hg  call s:RunShellCommand('hg '.<q-args>)
 
 function! s:RunShellCommand(cmdline)
-  let isfirst = 1
-  let words = []
-  for word in split(a:cmdline)
-    if isfirst
-      let isfirst = 0  " don't change first word (shell command)
-    else
-      if word[0] =~ '\v[%#<]'
-        let word = expand(word)
-      endif
-      let word = shellescape(word, 1)
-    endif
-    call add(words, word)
-  endfor
-  let expanded_cmdline = join(words)
-  botright new
-  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
-  call setline(1, 'You entered:  ' . a:cmdline)
-  call setline(2, 'Expanded to:  ' . expanded_cmdline)
-  call append(line('$'), substitute(getline(2), '.', '=', 'g'))
-  silent execute '$read !'. expanded_cmdline
-  1
+    let isfirst = 1
+    let words = []
+    for word in split(a:cmdline)
+        if isfirst
+            let isfirst = 0  " don't change first word (shell command)
+        else
+            if word[0] =~ '\v[%#<]'
+                let word = expand(word)
+            endif
+            let word = shellescape(word, 1)
+        endif
+        call add(words, word)
+    endfor
+    let expanded_cmdline = join(words)
+    botright new
+    setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
+    call setline(1, 'You entered:  ' . a:cmdline)
+    call setline(2, 'Expanded to:  ' . expanded_cmdline)
+    call append(line('$'), substitute(getline(2), '.', '=', 'g'))
+    silent execute '$read !'. expanded_cmdline
+    1
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

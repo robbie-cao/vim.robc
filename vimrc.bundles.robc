@@ -67,10 +67,10 @@ com! -nargs=+ UnBundle call UnBundle(<args>)
 "   :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
 Bundle 'gmarik/vundle'
 
-let g:syntastic_ennabled = 1
+let g:syntastic_enabled = 1
 " Syntastic {
 " Syntax checking
-if g:syntastic_ennabled
+if g:syntastic_enabled
     Bundle 'scrooloose/syntastic'
 
     " Statusline
@@ -89,9 +89,9 @@ if g:syntastic_ennabled
     let g:syntastic_warning_symbol           = '*W'
     let g:syntastic_style_warning_symbol     = '$W'
 
-    let s:syntastic_feature_enabled = 0      " Disable the following settings
+    let s:syntastic_feature_enable = 0      " Disable the following settings
 
-    if s:syntastic_feature_enabled  " {
+    if s:syntastic_feature_enable  " {
         " 最轻量
         let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes
 
@@ -133,7 +133,7 @@ endif
 " 自动补全
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:ycm_enabled = 0
+let g:ycm_enable = 0
 " YouCompleteMe
 " A fast, as-you-type, fuzzy-search code completion engine
 " 迄今为止用到的最好的自动VIM自动补全插件
@@ -141,7 +141,7 @@ let g:ycm_enabled = 0
 "   $ cd ~/.vim/bundle/YouCompleteMe
 "   $ ./install.py --clang-completer
 " 重启 :YcmRestartServer
-if g:ycm_enabled
+if g:ycm_enable
     Bundle 'Valloric/YouCompleteMe'
 
     let s:ycm_python = 1
@@ -220,10 +220,10 @@ endif
 " }
 
 
-let g:ultisnips_enabled = 0
+let g:ultisnips_enable = 0
 " UltiSnips {
 " 代码片段快速插入
-if g:ultisnips_enabled
+if g:ultisnips_enable
     Bundle 'SirVer/ultisnips'
     " Snippets are separated from the engine. Add this if you want them:
     Bundle 'honza/vim-snippets'
@@ -261,11 +261,14 @@ endif
 " }
 
 
+let g:delimitMate = 1
 " delimitMate {
 " 自动补全引号/括号等
 " Automatic closing of quotes, parenthesis, brackets, etc
-Bundle 'Raimondi/delimitMate'
-let delimitMate_expand_cr = 1
+if g:delimitMate
+    Bundle 'Raimondi/delimitMate'
+    let delimitMate_expand_cr = 1
+endif
 " }
 
 " For python docstring {
@@ -275,9 +278,12 @@ au FileType mail let b:delimitMate_autoclose = 0
 " }
 
 
+let g:closetag_html_style_enable = 1
 " 自动补全html/xml标签 {
-Bundle 'docunext/closetag.vim'
-let g:closetag_html_style=1
+if g:closetag_html_style_enable
+    Bundle 'docunext/closetag.vim'
+    let g:closetag_html_style = 1
+endif
 " }
 
 let g:neocomplete_ennabled = 1
@@ -363,50 +369,65 @@ endif
 " 快速编码
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:nerdcommenter_enable = 1
 " 快速注释
 " nerdcommenter {
-Bundle 'scrooloose/nerdcommenter'
-" <Leader>cc - Comment out the current line or text selected in visual mode.
-" <Leader>cn - Same as |<Leader>|cc but forces nesting.
-" <Leader>c<space> - Toggles the comment state of the selected line(s).
-" <Leader>cm - Comments the given lines using only one set of multipart delimiters.
-" <Leader>ci - Toggles the comment state of the selected line(s) individually.
-" <Leader>cs - Comments out the selected lines ``sexily''
-" <Leader>cy - Same as |<Leader>|cc except that the commented line(s) are yanked first.
-" <Leader>c$ - Comments the current line from the cursor to the end of line.
-" <Leader>cA - Adds comment delimiters to the end of line and goes into insert mode between them.
-let g:NERDSpaceDelims = 1
+if g:nerdcommenter_enable
+    Bundle 'scrooloose/nerdcommenter'
+    " <Leader>cc - Comment out the current line or text selected in visual mode.
+    " <Leader>cn - Same as |<Leader>|cc but forces nesting.
+    " <Leader>c<space> - Toggles the comment state of the selected line(s).
+    " <Leader>cm - Comments the given lines using only one set of multipart delimiters.
+    " <Leader>ci - Toggles the comment state of the selected line(s) individually.
+    " <Leader>cs - Comments out the selected lines ``sexily''
+    " <Leader>cy - Same as |<Leader>|cc except that the commented line(s) are yanked first.
+    " <Leader>c$ - Comments the current line from the cursor to the end of line.
+    " <Leader>cA - Adds comment delimiters to the end of line and goes into insert mode between them.
+    let g:NERDSpaceDelims = 1
+endif
 " }
 
 
+let g:vimsurround_enable = 1
 " vim-surround {
 " Easily delete, change and add surroundings - parentheses, brackets, quotes,
 " XML tags, and more - in pairs.
-Bundle 'tpope/vim-surround'
-" For repeat -> enhance surround.vim, . to repeat command
-Bundle 'tpope/vim-repeat'
+if g:vimsurround_enable
+    Bundle 'tpope/vim-surround'
+    " For repeat -> enhance surround.vim, . to repeat command
+    Bundle 'tpope/vim-repeat'
+endif
 " }
 
+let g:trailing_whitespace_enable = 1
 " vim-trailing-whitespace {
 " 快速去行尾空格 [, + <Space>]
-Bundle 'bronson/vim-trailing-whitespace'
-map <leader><space> :FixWhitespace<cr>
+if g:trailing_whitespace_enable
+    Bundle 'bronson/vim-trailing-whitespace'
+    map <leader><space> :FixWhitespace<cr>
+endif
 " }
 
+let g:vim_easy_align_enable = 1
 " vim-easy-align {
 " 快速赋值语句对齐
-Bundle 'junegunn/vim-easy-align'
-vmap <Leader>a <Plug>(EasyAlign)
-nmap <Leader>a <Plug>(EasyAlign)
-if !exists('g:easy_align_delimiters')
-    let g:easy_align_delimiters = {}
+if g:vim_easy_align_enable
+    Bundle 'junegunn/vim-easy-align'
+    vmap <Leader>a <Plug>(EasyAlign)
+    nmap <Leader>a <Plug>(EasyAlign)
+    if !exists('g:easy_align_delimiters')
+        let g:easy_align_delimiters = {}
+    endif
+    let g:easy_align_delimiters['#'] = { 'pattern': '#', 'ignore_groups': ['String'] }
 endif
-let g:easy_align_delimiters['#'] = { 'pattern': '#', 'ignore_groups': ['String'] }
 " }
 
+let g:tabular_enable = 1
 " Tabular {
 " Text filtering and alignment
-Bundle 'godlygeek/tabular'
+if g:tabular_enable
+    Bundle 'godlygeek/tabular'
+endif
 " }
 
 
@@ -414,26 +435,32 @@ Bundle 'godlygeek/tabular'
 " 快速移动
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let easymotion_enable = 1
 " easymotion {
 " 更高效的移动 [,, + w/fx]
-Bundle 'Lokaltog/vim-easymotion'
-let g:EasyMotion_smartcase = 1
-let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
-map <Leader><leader>h <Plug>(easymotion-linebackward)
-map <Leader><Leader>j <Plug>(easymotion-j)
-map <Leader><Leader>k <Plug>(easymotion-k)
-map <Leader><Leader>l <Plug>(easymotion-lineforward)
-" 重复上一次操作, 类似repeat插件, 很强大
-map <Leader><Leader>. <Plug>(easymotion-repeat)
+if easymotion_enable
+    Bundle 'Lokaltog/vim-easymotion'
+    let g:EasyMotion_smartcase = 1
+    let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+    map <Leader><leader>h <Plug>(easymotion-linebackward)
+    map <Leader><Leader>j <Plug>(easymotion-j)
+    map <Leader><Leader>k <Plug>(easymotion-k)
+    map <Leader><Leader>l <Plug>(easymotion-lineforward)
+    " 重复上一次操作, 类似repeat插件, 很强大
+    map <Leader><Leader>. <Plug>(easymotion-repeat)
+endif
 " }
 
+let g:vim_signature_enable = 0
 " vim-signature {
 " Place, toggle and display marks
 " 方便进行标记和跳转
 " m[a-zA-Z] - add mark
 " '[a-zA-Z] - go to mark
 " m<Space>  - del all marks
-Bundle "kshenoy/vim-signature"
+if g:vim_signature_enable
+    Bundle "kshenoy/vim-signature"
+endif
 " }
 
 
@@ -441,24 +468,30 @@ Bundle "kshenoy/vim-signature"
 " 快速选中
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:expand_region_enable = 1
 " expend-region {
 " 选中区块
-Bundle 'terryma/vim-expand-region'
-" map + <Plug>(expand_region_expand)
-" map _ <Plug>(expand_region_shrink)
-vmap v <Plug>(expand_region_expand)
-vmap V <Plug>(expand_region_shrink)
+if g:expand_region_enable
+    Bundle 'terryma/vim-expand-region'
+    " map + <Plug>(expand_region_expand)
+    " map _ <Plug>(expand_region_shrink)
+    vmap v <Plug>(expand_region_expand)
+    vmap V <Plug>(expand_region_shrink)
+endif
 " }
 
+let g:multi_cursors_enable = 0
 " multiple-cursors {
 " 多光标选中编辑
-Bundle 'terryma/vim-multiple-cursors'
-let g:multi_cursor_use_default_mapping=0
-" Default mapping
-let g:multi_cursor_next_key='<C-m>'
-let g:multi_cursor_prev_key='<C-p>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<Esc>'
+if g:multi_cursors_enable
+    Bundle 'terryma/vim-multiple-cursors'
+    let g:multi_cursor_use_default_mapping=0
+    " Default mapping
+    let g:multi_cursor_next_key='<C-m>'
+    let g:multi_cursor_prev_key='<C-p>'
+    let g:multi_cursor_skip_key='<C-x>'
+    let g:multi_cursor_quit_key='<Esc>'
+endif
 " }
 
 
@@ -466,80 +499,89 @@ let g:multi_cursor_quit_key='<Esc>'
 " 文本对象
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:textobj_enable = 0
 " textobj {
 " 支持自定义文本对象
-Bundle 'kana/vim-textobj-user.git'
-" 增加行文本对象: l   dal yal cil
-Bundle 'kana/vim-textobj-line'
-" 增加文件文本对象: e   dae yae cie
-Bundle 'kana/vim-textobj-entire.git'
-" 增加缩进文本对象: i   dai yai cii - 相同缩进属于同一块
-Bundle 'kana/vim-textobj-indent.git'
+if g:textobj_enable
+    Bundle 'kana/vim-textobj-user.git'
+    " 增加行文本对象: l   dal yal cil
+    Bundle 'kana/vim-textobj-line'
+    " 增加文件文本对象: e   dae yae cie
+    Bundle 'kana/vim-textobj-entire.git'
+    " 增加缩进文本对象: i   dai yai cii - 相同缩进属于同一块
+    Bundle 'kana/vim-textobj-indent.git'
+endif
 " }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 快速搜索
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:ctrlp_enable = 1
 " ctrlp {
 " 文件搜索
-Bundle 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
+if g:ctrlp_enable
+    Bundle 'ctrlpvim/ctrlp.vim'
+    let g:ctrlp_map = '<c-p>'
+    let g:ctrlp_cmd = 'CtrlP'
 
-map <leader>f :CtrlPMRU<CR>
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
-" Excluding version control directories
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Linux/MacOSX
-set wildignore+=*\\.git\\*,*\\.hg\\*,*\\.svn\\*  " Windows ('noshellslash')
+    map <leader>f :CtrlPMRU<CR>
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+    " Excluding version control directories
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Linux/MacOSX
+    set wildignore+=*\\.git\\*,*\\.hg\\*,*\\.svn\\*  " Windows ('noshellslash')
 
-let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-            \ 'file': '\v\.(exe|so|dll)$',
-            \ 'link': 'some_bad_symbolic_links',
-            \ }
-let g:ctrlp_working_path_mode     = 0
-let g:ctrlp_match_window_bottom   = 1
-let g:ctrlp_max_height            = 15
-let g:ctrlp_match_window_reversed = 0
-let g:ctrlp_mruf_max              = 500
-let g:ctrlp_follow_symlinks       = 1
-let g:ctrlp_working_path_mode     = 'ra'
+    let g:ctrlp_custom_ignore = {
+                \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+                \ 'file': '\v\.(exe|so|dll)$',
+                \ 'link': 'some_bad_symbolic_links',
+                \ }
+    let g:ctrlp_working_path_mode     = 0
+    let g:ctrlp_match_window_bottom   = 1
+    let g:ctrlp_max_height            = 15
+    let g:ctrlp_match_window_reversed = 0
+    let g:ctrlp_mruf_max              = 500
+    let g:ctrlp_follow_symlinks       = 1
+    let g:ctrlp_working_path_mode     = 'ra'
 
-let g:ctrlp_mruf_max              = 250
+    let g:ctrlp_mruf_max              = 250
 
-" 如果安装了ag, 使用ag
-if executable('ag')
-    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-    " ag is fast enough that CtrlP doesn't need to cache
-    let g:ctrlp_use_caching = 0
+    " 如果安装了ag, 使用ag
+    if executable('ag')
+        " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+        let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+        " ag is fast enough that CtrlP doesn't need to cache
+        let g:ctrlp_use_caching = 0
+    endif
+endif
+" }
+
+let g:ctrlp_funck_enable = 0
+" ctrlp-funky {
+" ctrlp插件 - 不用ctag进行函数快速跳转
+if g:ctrlp_funck_enable
+    Bundle 'tacahiroy/ctrlp-funky'
+    nnoremap <Leader>fu :CtrlPFunky<Cr>
+    " Narrow the list down with a word under cursor
+    nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+    let g:ctrlp_funky_syntax_highlight       = 1
+    let g:ctrlp_funky_multi_buffers          = 1
+    let g:ctrlp_funky_sort_by_mru            = 1
+    let g:ctrlp_funky_use_cache              = 1
+    let g:ctrlp_funky_nerdtree_include_files = 1
+    let g:ctrlp_funky_php_requires           = 1
+    let g:ctrlp_funky_php_include            = 1
+
+    let g:ctrlp_extensions                   = ['funky']
 endif
 " }
 
 
-" ctrlp-funky {
-" ctrlp插件 - 不用ctag进行函数快速跳转
-Bundle 'tacahiroy/ctrlp-funky'
-nnoremap <Leader>fu :CtrlPFunky<Cr>
-" Narrow the list down with a word under cursor
-nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-let g:ctrlp_funky_syntax_highlight = 1
-let g:ctrlp_funky_multi_buffers = 1
-let g:ctrlp_funky_sort_by_mru = 1
-let g:ctrlp_funky_use_cache = 1
-let g:ctrlp_funky_nerdtree_include_files = 1
-let g:ctrlp_funky_php_requires = 1
-let g:ctrlp_funky_php_include = 1
-
-let g:ctrlp_extensions = ['funky']
-" }
-
+let g:ctrlsf_enable = 0
 " ctrlsf {
 " 类似sublimetext的搜索
-let g:ctrlsf_enabled = 0
-if g:ctrlsf_enabled
+if g:ctrlsf_enable
     Bundle "dyng/ctrlsf.vim"
     " In CtrlSF window:
     " 回车/o, 打开
@@ -569,48 +611,63 @@ if g:ctrlsf_enabled
 endif
 " }
 
+let g:vim_fugitive_enable = 1
 " Git wrapper {
 " fugitive
 "   :Gdiff
 "   :Gstatus
 "   :Gvsplit
 "   :Glog
-Bundle 'tpope/vim-fugitive'
-nnoremap <Leader><Leader>ge :Gdiff<CR>
-nnoremap <Leader><Leader>gb :Gblame<CR>
-nnoremap <Leader><Leader>gs :Gstatus<CR>
-nnoremap <Leader><Leader>gd :Gdiff<CR>  和现有冲突
-nnoremap <Leader><Leader>gl :Glog<CR>
-nnoremap <Leader><Leader>gc :Gcommit<CR>
-nnoremap <Leader><Leader>gp :Git push<CR>
-
-Bundle 'vim-scripts/vcscommand.vim'
-let b:VCSCommandMapPrefix=',v'
-let b:VCSCommandVCSType='git'
-nmap <Leader><Leader>vs :VCSStatus<CR>
-nmap <Leader><Leader>vc :VCSCommit<CR>
-nmap <Leader><Leader>vb :VCSBlame<CR>
-nmap <Leader><Leader>va :VCSAdd<CR>
-nmap <Leader><Leader>vd :VCSVimDiff<CR>
-nmap <Leader><Leader>vl :VCSLog<CR>
-nmap <Leader><Leader>vu :VCSUpdate<CR>
-
-" gitgutter
-" 同git diff,实时展示文件中修改的行
-Bundle 'airblade/vim-gitgutter'
-let g:gitgutter_map_keys = 0
-let g:gitgutter_enabled = 0
-let g:gitgutter_signs = 0
-let g:gitgutter_highlight_lines = 1
-nnoremap <Leader>gt :GitGutterToggle<CR>
-nnoremap <Leader>gst :GitGutterSignsToggle<CR>
-nnoremap <Leader>glt :GitGutterLineHighlightsToggle<CR>
+if g:vim_fugitive_enable
+    Bundle 'tpope/vim-fugitive'
+    nnoremap <Leader><Leader>ge :Gdiff<CR>
+    nnoremap <Leader><Leader>gb :Gblame<CR>
+    nnoremap <Leader><Leader>gs :Gstatus<CR>
+    nnoremap <Leader><Leader>gd :Gdiff<CR>  和现有冲突
+    nnoremap <Leader><Leader>gl :Glog<CR>
+    nnoremap <Leader><Leader>gc :Gcommit<CR>
+    nnoremap <Leader><Leader>gp :Git push<CR>
+endif
 " }
 
+let g:vcscommand_enable = 1
+" {
+if g:vcscommand_enable
+    Bundle 'vim-scripts/vcscommand.vim'
+    let b:VCSCommandMapPrefix=',v'
+    let b:VCSCommandVCSType='git'
+    nmap <Leader><Leader>vs :VCSStatus<CR>
+    nmap <Leader><Leader>vc :VCSCommit<CR>
+    nmap <Leader><Leader>vb :VCSBlame<CR>
+    nmap <Leader><Leader>va :VCSAdd<CR>
+    nmap <Leader><Leader>vd :VCSVimDiff<CR>
+    nmap <Leader><Leader>vl :VCSLog<CR>
+    nmap <Leader><Leader>vu :VCSUpdate<CR>
+endif
+" }
+
+let g:gitgutter_enable = 1
+" gitgutter {
+" 同git diff,实时展示文件中修改的行
+if g:gitgutter_enable
+    Bundle 'airblade/vim-gitgutter'
+    let g:gitgutter_map_keys        = 0
+    let g:gitgutter_enable          = 0
+    let g:gitgutter_signs           = 0
+    let g:gitgutter_highlight_lines = 1
+    nnoremap <Leader>gt  :GitGutterToggle<CR>
+    nnoremap <Leader>gst :GitGutterSignsToggle<CR>
+    nnoremap <Leader>glt :GitGutterLineHighlightsToggle<CR>
+endif
+" }
+
+let g:gundo_enable = 1
 " gundo {
 " Edit history, 可以查看回到某个历史状态
-Bundle 'sjl/gundo.vim'
-noremap <leader>h :GundoToggle<CR>
+if g:gundo_enable
+    Bundle 'sjl/gundo.vim'
+    noremap <leader>h :GundoToggle<CR>
+endif
 " }
 
 
@@ -618,11 +675,10 @@ noremap <leader>h :GundoToggle<CR>
 " 显示增强
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" 状态栏增强展示
-let g:airline_enabled = 1
-
+let g:airline_enable = 1
 " vim-airline {
-if g:airline_enabled
+" 状态栏增强展示
+if g:airline_enable
     Bundle 'bling/vim-airline'
     if !exists('g:airline_symbols')
         let g:airline_symbols = {}
@@ -631,50 +687,52 @@ if g:airline_enabled
     let g:airline_detect_paste     = 1
     let g:airline_detect_crypt     = 1
     " 是否打开tabline
-    let g:airline#extensions#tabline#enabled      = 1
+    let g:airline#extensions#tabline#enable      = 1
     let g:airline#extensions#tabline#left_sep     = ' '
     let g:airline#extensions#tabline#left_alt_sep = '|'
 endif
 " }
 
 
+let g:rainbow_parentheses_enable = 1
 " rainbow_parentheses {
 " 括号显示增强
-Bundle 'kien/rainbow_parentheses.vim'
-" 不加入这行, 防止黑色括号出现, 很难识别
-" \ ['black',       'SeaGreen3'],
-let g:rbpt_colorpairs = [
-            \ ['brown',       'RoyalBlue3'],
-            \ ['darkblue',    'SeaGreen3'],
-            \ ['darkgray',    'DarkOrchid3'],
-            \ ['darkgreen',   'FireBrick3'],
-            \ ['darkcyan',    'RoyalBlue3'],
-            \ ['darkred',     'SeaGreen3'],
-            \ ['darkmagenta', 'DarkOrchid3'],
-            \ ['brown',       'FireBrick3'],
-            \ ['gray',        'RoyalBlue3'],
-            \ ['darkmagenta', 'DarkOrchid3'],
-            \ ['darkblue',    'FireBrick3'],
-            \ ['darkgreen',   'RoyalBlue3'],
-            \ ['darkcyan',    'SeaGreen3'],
-            \ ['darkred',     'DarkOrchid3'],
-            \ ['red',         'FireBrick3'],
-            \ ]
+if g:rainbow_parentheses_enable
+    Bundle 'kien/rainbow_parentheses.vim'
+    " 不加入这行, 防止黑色括号出现, 很难识别
+    " \ ['black',       'SeaGreen3'],
+    let g:rbpt_colorpairs = [
+                \ ['brown',       'RoyalBlue3'],
+                \ ['darkblue',    'SeaGreen3'],
+                \ ['darkgray',    'DarkOrchid3'],
+                \ ['darkgreen',   'FireBrick3'],
+                \ ['darkcyan',    'RoyalBlue3'],
+                \ ['darkred',     'SeaGreen3'],
+                \ ['darkmagenta', 'DarkOrchid3'],
+                \ ['brown',       'FireBrick3'],
+                \ ['gray',        'RoyalBlue3'],
+                \ ['darkmagenta', 'DarkOrchid3'],
+                \ ['darkblue',    'FireBrick3'],
+                \ ['darkgreen',   'RoyalBlue3'],
+                \ ['darkcyan',    'SeaGreen3'],
+                \ ['darkred',     'DarkOrchid3'],
+                \ ['red',         'FireBrick3'],
+                \ ]
 
-let g:rbpt_max = 16
-let g:rbpt_loadcmd_toggle = 0
-" Always On
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+    let g:rbpt_max = 16
+    let g:rbpt_loadcmd_toggle = 0
+    " Always On
+    au VimEnter * RainbowParenthesesToggle
+    au Syntax * RainbowParenthesesLoadRound
+    au Syntax * RainbowParenthesesLoadSquare
+    au Syntax * RainbowParenthesesLoadBraces
+endif
 " }
 
 
+let g:customize_theme = 0
 " 主题
 " Theme {
-let g:customize_theme = 0
-
 if g:customize_theme
     " solarized
     Bundle 'altercation/vim-colors-solarized'
@@ -698,92 +756,100 @@ endif
 " 快速导航
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:nerdtree_enable = 1
 " 目录导航
 " nerdtree {
-Bundle 'scrooloose/nerdtree'
-map <leader>n :NERDTreeToggle<CR>
-let NERDTreeHighlightCursorline=1
-let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
-"close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
-" s/v 分屏打开文件
-let g:NERDTreeMapOpenSplit = 's'
-let g:NERDTreeMapOpenVSplit = 'v'
+if g:nerdtree_enable
+    Bundle 'scrooloose/nerdtree'
+    map <leader>n :NERDTreeToggle<CR>
+    let NERDTreeHighlightCursorline             = 1
+    let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
+    "close vim if the only window left open is a NERDTree
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
+    " s/v 分屏打开文件
+    let g:NERDTreeMapOpenSplit  = 's'
+    let g:NERDTreeMapOpenVSplit = 'v'
 
-Bundle 'jistr/vim-nerdtree-tabs'
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
-" 关闭同步
-let g:nerdtree_tabs_synchronize_view=0
-let g:nerdtree_tabs_synchronize_focus=0
-" 自动开启nerdtree
-let g:nerdtree_tabs_open_on_console_startup=0
+    Bundle 'jistr/vim-nerdtree-tabs'
+    map <Leader>n <plug>NERDTreeTabsToggle<CR>
+    " 关闭同步
+    let g:nerdtree_tabs_synchronize_view        = 0
+    let g:nerdtree_tabs_synchronize_focus       = 0
+    " 自动开启nerdtree
+    let g:nerdtree_tabs_open_on_console_startup = 0
+endif
 " }
 
-let g:taglist_enabled = 1
+let g:taglist_enable = 1
 " taglist {
 " Source code browser plugin for Vim.
 " Provides an overview of the structure of source code files and allows
 " you to efficiently browse through source code files for different
 " programming languages.
 " 使用tagbar和ctrlp-funky可以直接快速跳转函数和变量位置,taglist有些多余
-if g:taglist_enabled
+if g:taglist_enable
     Bundle 'vim-scripts/taglist.vim'
 
     if &diff
         " Don't auto pen when compare two files
-        let Tlist_Auto_Open=0
+        let Tlist_Auto_Open = 0
     else
-        " Auto pen Tlist when open a file
-        let Tlist_Auto_Open=1
+        " Auto open Tlist when open a file
+        let Tlist_Auto_Open = 0
     endif
 
-    let Tlist_Auto_Highlight_Tag=1
-    let Tlist_Use_Right_Window=0
-    let Tlist_Auto_Update=1
-    let Tlist_File_Fold_Auto_Close=1
-    let Tlist_Exit_OnlyWindow=1
-    let Tlist_Highlight_Tag_On_BufEnter=1
-    let Tlist_Use_SingleClick=0
+    let Tlist_Auto_Highlight_Tag        = 1
+    let Tlist_Use_Right_Window          = 0
+    let Tlist_Auto_Update               = 1
+    let Tlist_File_Fold_Auto_Close      = 1
+    let Tlist_Exit_OnlyWindow           = 1
+    let Tlist_Highlight_Tag_On_BufEnter = 1
+    let Tlist_Use_SingleClick           = 0
 endif
 " }
 
+let g:Trinity_enable = 1
 " Trinity {
 " The Trinity plugin manages Source Explorer, Taglist and NERD Tree, and build
 " them as a great IDE which works like the "Source Insignt".
-Bundle 'wesleyche/Trinity'
+if g:Trinity_enable
+    Bundle 'wesleyche/Trinity'
 
-" Open and close all the three plugins on the same time
-nmap <Leader>ta   :TrinityToggleAll<CR>
-" Open and close the srcexpl.vim separately
-nmap <Leader>ts   :TrinityToggleSourceExplorer<CR>
-" Open and close the taglist.vim separately
-nmap <Leader>tl   :TrinityToggleTagList<CR>
-" Open and close the NERD_tree.vim separately
-nmap <Leader>tt   :TrinityToggleNERDTree<CR>
+    " Open and close all the three plugins on the same time
+    nmap <Leader>ta   :TrinityToggleAll<CR>
+    " Open and close the srcexpl.vim separately
+    nmap <Leader>ts   :TrinityToggleSourceExplorer<CR>
+    " Open and close the taglist.vim separately
+    nmap <Leader>tl   :TrinityToggleTagList<CR>
+    " Open and close the NERD_tree.vim separately
+    nmap <Leader>tt   :TrinityToggleNERDTree<CR>
+endif
 " }
 
 
+let g:ctrlspace_enable = 1
 " Vim Workspace Controller {
-Bundle "szw/vim-ctrlspace"
-let g:airline_exclude_preview = 1
-hi CtrlSpaceSelected guifg=#586e75 guibg=#eee8d5 guisp=#839496 gui=reverse,bold ctermfg=10 ctermbg=7 cterm=reverse,bold
-hi CtrlSpaceNormal   guifg=#839496 guibg=#021B25 guisp=#839496 gui=NONE ctermfg=12 ctermbg=0 cterm=NONE
-hi CtrlSpaceSearch   guifg=#cb4b16 guibg=NONE gui=bold ctermfg=9 ctermbg=NONE term=bold cterm=bold
-hi CtrlSpaceStatus   guifg=#839496 guibg=#002b36 gui=reverse term=reverse cterm=reverse ctermfg=12 ctermbg=8
+if g:ctrlspace_enable
+    Bundle "szw/vim-ctrlspace"
+    let g:airline_exclude_preview = 1
+    hi CtrlSpaceSelected guifg=#586e75 guibg=#eee8d5 guisp=#839496 gui=reverse,bold ctermfg=10 ctermbg=7 cterm=reverse,bold
+    hi CtrlSpaceNormal   guifg=#839496 guibg=#021B25 guisp=#839496 gui=NONE ctermfg=12 ctermbg=0 cterm=NONE
+    hi CtrlSpaceSearch   guifg=#cb4b16 guibg=NONE gui=bold ctermfg=9 ctermbg=NONE term=bold cterm=bold
+    hi CtrlSpaceStatus   guifg=#839496 guibg=#002b36 gui=reverse term=reverse cterm=reverse ctermfg=12 ctermbg=8
+endif
 
-let g:minibufferexpl_enabled = 0
+let g:minibufferexpl_enable = 0
 " minibufferexpl
-" Not enable, 有需要同学的自己解开
-if g:minibufferexpl_enabled
+if g:minibufferexpl_enable
     Bundle 'fholgado/minibufexpl.vim'
-    let g:miniBufExplMapWindowNavVim = 1
+    let g:miniBufExplMapWindowNavVim    = 1
     let g:miniBufExplMapWindowNavArrows = 1
-    let g:miniBufExplMapCTabSwitchBufs = 1
-    let g:miniBufExplModSelTarget = 1
+    let g:miniBufExplMapCTabSwitchBufs  = 1
+    let g:miniBufExplModSelTarget       = 1
     " 解决FileExplorer窗口变小问题
-    let g:miniBufExplForceSyntaxEnable = 1
-    let g:miniBufExplorerMoreThanOne=2
-    let g:miniBufExplCycleArround=1
+    let g:miniBufExplForceSyntaxEnable  = 1
+    let g:miniBufExplorerMoreThanOne    = 2
+    let g:miniBufExplCycleArround       = 1
     " 默认方向键左右可以切换buffer
     nnoremap <TAB> :MBEbn<CR>
     noremap <leader>bn :MBEbn<CR>
@@ -792,30 +858,32 @@ if g:minibufferexpl_enabled
 endif
 " }
 
-
+let g:tagbar_enable = 1
 " 标签导航
 " tagbar {
-Bundle 'majutsushi/tagbar'
-nmap <F9> :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
-" For ruby
-let g:tagbar_type_ruby = {
-            \ 'kinds' : [
-            \ 'm:modules',
-            \ 'c:classes',
-            \ 'd:describes',
-            \ 'C:contexts',
-            \ 'f:methods',
-            \ 'F:singleton methods'
-            \ ]
-            \ }
+if g:tagbar_enable
+    Bundle 'majutsushi/tagbar'
+    nmap <F9> :TagbarToggle<CR>
+    let g:tagbar_autofocus = 1
+    " For ruby
+    let g:tagbar_type_ruby = {
+                \ 'kinds' : [
+                \ 'm:modules',
+                \ 'c:classes',
+                \ 'd:describes',
+                \ 'C:contexts',
+                \ 'f:methods',
+                \ 'F:singleton methods'
+                \ ]
+                \ }
+endif
 
-let g:gottags_enabled = 0
+let g:gottags_enable = 0
 " Go语言的tagbar配置
 " 1. install gotags 'go get -u github.com/jstemmer/gotags'
 " 2. make sure `gotags` in you shell PATH, you can call check it with `which gotags`
 " for gotags. work with tagbar
-if g:gottags_enabled
+if g:gottags_enable
     let g:tagbar_type_go = {
                 \ 'ctagstype' : 'go',
                 \ 'kinds'     : [
@@ -846,16 +914,23 @@ if g:gottags_enabled
 endif
 " }
 
+let g:tmux_navigator_enable = 0
 " tmux-navigator {
 " For tmux navigator Ctrl-hjkl
-Bundle 'christoomey/vim-tmux-navigator'
+if g:tmux_navigator_enable = 0
+    Bundle 'christoomey/vim-tmux-navigator'
+endif
 " }
 
+let g:srcexpl_enable = 1
 " SrcExpl {
 " Exploring the source code based on "tags"
-Bundle 'wesleyche/SrcExpl'
+if g:srcexpl_enable
+    Bundle 'wesleyche/SrcExpl'
+endif
 " "}
 
+let g:bufexplorer_enable = 1
 " bufexplorer {
 " Quickly and easily switch between buffers by using the one of
 " the default public interfaces:
@@ -863,78 +938,99 @@ Bundle 'wesleyche/SrcExpl'
 " - 'bt' (toggle open / close)
 " - 'bs' (force horizontal split open)
 " - 'bv' (force vertical split open)
-Bundle 'jlanzarotta/bufexplorer'
-let g:bufExplorerSortBy='mru'        " Sort by most recently used.
-let g:bufExplorerSplitRight=0        " Split left.
-let g:bufExplorerVertSize=30         " New split window is n columns wide.
-let g:bufExplorerShowDirectories=0   " Do not show directories.
-let g:bufExplorerShowRelativePath=1  " Show relative paths.
-nmap <Leader>b :BufExplorer<CR>
-nmap <Leader>be :BufExplorer<CR>
+if g:bufexplorer_enable
+    Bundle 'jlanzarotta/bufexplorer'
+    let g:bufExplorerSortBy           = 'mru' " Sort by most recently used.
+    let g:bufExplorerSplitRight       = 0     " Split left.
+    let g:bufExplorerVertSize         = 30    " New split window is n columns wide.
+    let g:bufExplorerShowDirectories  = 0     " Do not show directories.
+    let g:bufExplorerShowRelativePath = 1     " Show relative paths.
+    nmap <Leader>b  :BufExplorer<CR>
+    nmap <Leader>be :BufExplorer<CR>
+endif
 " }
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 快速查找
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:ack_enable = 1
 " ack {
 " Run your favorite search tool ack from Vim, with an enhanced results list.
-Bundle 'mileszs/ack.vim'
+if g:ack_enable
+    Bundle 'mileszs/ack.vim'
+endif
 " }
 
+let g:acp_enable = 1
 " acp {
 " Automatically opens popup menu for completions
-Bundle 'vim-scripts/AutoComplPop'
+if g:acp_enable
+    Bundle 'vim-scripts/AutoComplPop'
+endif
 " }
 
+let g:matchit_enable = 1
 " matchit {
 " Allows you to configure % to match more than just single characters
-Bundle 'tmhedberg/matchit'
+if g:matchit_enable
+    Bundle 'tmhedberg/matchit'
+endif
 " }
 
+let g:lookupfile_enable = 1
 " Lookupfile {
-Bundle 'vim-scripts/lookupfile'
-let g:LookupFile_MinPatLength = 2               " start search until 2 char input
-let g:LookupFile_PreserveLastPattern = 0        " not save last search strin
-let g:LookupFile_PreservePatternHistory = 1     " save serach history
-let g:LookupFile_AlwaysAcceptFirst = 1          " enter to open first match
-let g:LookupFile_AllowNewFiles = 0              " not create file which not exist
-let g:LookupFile_ignorecase= 1                  " ignore case to match files
-if filereadable("fn.tags")                      " set tag file name
-    let g:LookupFile_TagExpr = '"fn.tags"'
+if g:lookupfile_enable
+    Bundle 'vim-scripts/lookupfile'
+    let g:LookupFile_MinPatLength           = 2 " start search until 2 char input
+    let g:LookupFile_PreserveLastPattern    = 0 " not save last search strin
+    let g:LookupFile_PreservePatternHistory = 1 " save serach history
+    let g:LookupFile_AlwaysAcceptFirst      = 1 " enter to open first match
+    let g:LookupFile_AllowNewFiles          = 0 " not create file which not exist
+    let g:LookupFile_ignorecase             = 1 " ignore case to match files
+    if filereadable("fn.tags")                  " set tag file name
+        let g:LookupFile_TagExpr = '"fn.tags"'
+    endif
+    nmap <silent> <Leader>lf :LookupFile<cr>
+    nmap <silent> <Leader>lt :LUTags<cr>
+    nmap <silent> <Leader>lb :LUBufs<cr>
+    nmap <silent> <Leader>lp :LUPath<cr>
+    nmap <silent> <Leader>lw :LUWalk<cr>
 endif
-nmap <silent> <Leader>lf :LookupFile<cr>
-nmap <silent> <Leader>lt :LUTags<cr>
-nmap <silent> <Leader>lb :LUBufs<cr>
-nmap <silent> <Leader>lp :LUPath<cr>
-nmap <silent> <Leader>lw :LUWalk<cr>
 " }
+
+let g:genutils_enable
 " genutils {
-Bundle 'clones/vim-genutils'
+if g:genutils_enable
+    Bundle 'clones/vim-genutils'
+endif
 " }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 语言相关
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:vim_quickrun_enable = 1
 " vim-quickrun {
 " Plugin to execute whole/part of editing file.
-Bundle 'thinca/vim-quickrun'
-let g:quickrun_config = {
-            \   "_" : {
-            \       "outputter" : "message",
-            \   },
-            \}
+if g:vim_quickrun_enable
+    Bundle 'thinca/vim-quickrun'
+    let g:quickrun_config = {
+                \   "_" : {
+                \       "outputter" : "message",
+                \   },
+                \}
 
-let g:quickrun_no_default_key_mappings = 1
-nmap <Leader>r <Plug>(quickrun)
-map <F10> :QuickRun<CR>
+    let g:quickrun_no_default_key_mappings = 1
+    nmap <Leader>r <Plug>(quickrun)
+    map <F10> :QuickRun<CR>
+endif
 " }
 
-let g:python_enabled = 0
+let g:python_enable = 0
 " Python {
-
-if g:python_enabled
+if g:python_enable
     " python fly check, 弥补syntastic只能打开和保存才检查语法的不足
     Bundle 'kevinw/pyflakes-vim'
     let g:pyflakes_use_quickfix = 0
@@ -955,19 +1051,19 @@ if g:python_enabled
 endif
 " }
 
-let g:golang_enabled = 0
+let g:golang_enable = 0
 " Go {
 " 1.install golang and install gocode 'go get github.com/nsf/gocode'
 " 2.make sure gocode in your path: `which gocode` (add $GOPATH/bin to you $PATH)
-if g:golang_enabled
+if g:golang_enable
     Bundle 'Blackrush/vim-gocode'
     Bundle 'fatih/vim-go.git'
 endif
 " }
 
-let g:ruby_enabled = 0
+let g:ruby_enable = 0
 " Ruby {
-if g:ruby_enabled
+if g:ruby_enable
     "Bundle 'vim-ruby/vim-ruby'
     "Bundle 'nelstrom/vim-textobj-rubyblock'
 
@@ -977,9 +1073,9 @@ if g:ruby_enabled
 endif
 " }
 
-let g:javascript_enabled = 0
+let g:javascript_enable = 0
 " JavaScript {
-if g:javascript_enabled
+if g:javascript_enable
     " For javascript 自动补全,配合YCM,需要安装nodejs&npm  see
     " https://github.com/marijnh/tern_for_vim
     "Bundle 'marijnh/tern_for_vim'
@@ -993,24 +1089,24 @@ endif
 " }
 
 
-let g:vim_less_enabled = 0
+let g:vim_less_enable = 0
 " vim.less {
-if g:vim_less_enabled
+if g:vim_less_enable
     Bundle 'groenewege/vim-less'
     autocmd BufWritePost *.less :!lessc % > %:p:r.css
 endif
 " }
 
-let g:jinja2_enabled = 0
+let g:jinja2_enable = 0
 " Jinja2 {
-if g:jinja2_enabled
+if g:jinja2_enable
     Bundle 'Glench/Vim-Jinja2-Syntax'
 endif
 " }
 
-let g:css_enabled = 0
+let g:css_enable = 0
 " HTML/JS/JQUERY/CSS {
-if g:css_enabled
+if g:css_enable
     " Not work in iterm2 which termianl selection is not xterm-256
     Bundle 'ap/vim-css-color'
 
@@ -1025,24 +1121,24 @@ if g:css_enabled
 endif
 " }
 
-let g:nginx_enabled = 0
+let g:nginx_enable = 0
 " nginx {
-if g:nginx_enabled
+if g:nginx_enable
     Bundle 'evanmiller/nginx-vim-syntax'
 endif
 " }
 
-let g:markdown_enabled = 0
-let g:markdown_preview_enabled = 0
+let g:markdown_enable = 0
+let g:markdown_preview_enable = 0
 " Markdown {
-if g:markdown_enabled
+if g:markdown_enable
     " Vim Markdown runtime files, included syntax highlighting and filetype plugins for Markdown
     Bundle 'tpope/vim-markdown'
     autocmd BufNewFile,BufReadPost *.md set filetype=markdown
     let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
 
     " Markdown Preview {
-    if g:markdown_preview_enabled
+    if g:markdown_preview_enable
         Bundle 'MikeCoder/markdown-preview.vim'
         let g:MarkDownCSSDir='~/.vim/mdres'
         map <Leader><Leader>md  :MarkdownPreview GitHub<CR>
@@ -1063,56 +1159,59 @@ if g:markdown_enabled
 endif
 " }
 
-let g:xml_enabled = 0
+let g:xml_enable = 0
 " XML {
-if g:xml_enabled
+if g:xml_enable
     " A plugin for editing xml
     Bundle 'othree/xml.vim'
 endif
 " }
 
 
+let g:vim_c_enable = 1
 " C {
 " c.vim
 " C/C++ IDE --  Write and run programs. Insert statements, idioms, comments etc.
-Bundle 'vim-scripts/c.vim'
-" Vim library plugin to provide an easy way to define your own operator
-Bundle 'kana/vim-operator-user'
+if g:vim_c_enable
+    Bundle 'vim-scripts/c.vim'
+    " Vim library plugin to provide an easy way to define your own operator
+    Bundle 'kana/vim-operator-user'
 
-" clang-format
-" Formats your C++ code with specific coding style using clang
-Bundle 'rhysd/vim-clang-format'
+    " clang-format
+    " Formats your C++ code with specific coding style using clang
+    Bundle 'rhysd/vim-clang-format'
 
-" BS_Attach     (in configuration: Attach) Always attach braces to surrounding context.
-" BS_Linux      (in configuration: Linux) Like Attach, but break before braces on function,
-"               namespace and class definitions.
-" BS_Stroustrup (in configuration: Stroustrup) Like Attach, but break before function
-"               definitions, and .else..
-" BS_Allman     (in configuration: Allman) Always break before braces.
-" BS_GNU        (in configuration: GNU) Always break before braces and add an extra level
-"               of indentation to braces of control statements, not to those of class,
-"               function or other definitions.
-let g:clang_format#style_options = {
-            \ "BasedOnStyle" : "WebKit",
-            \ "AccessModifierOffset" : -4,
-            \ "UseTab" : "Never",
-            \ "IndentWidth" : 4,
-            \ "TabWidth" : 4,
-            \ "ColumnLimit" : 0,
-            \ "AlignTrailingComments" : "true",
-            \ "AllowShortIfStatementsOnASingleLine" : "false",
-            \ "AllowShortLoopsOnASingleLine" : "false",
-            \ "AlwaysBreakTemplateDeclarations" : "true",
-            \ "BreakBeforeBraces" : "Allman",
-            \ "SpaceBeforeAssignmentOperators" : "true",
-            \ "IndentCaseLabels" : "true",
-            \ "Standard" : "Auto"}
+    " BS_Attach     (in configuration: Attach) Always attach braces to surrounding context.
+    " BS_Linux      (in configuration: Linux) Like Attach, but break before braces on function,
+    "               namespace and class definitions.
+    " BS_Stroustrup (in configuration: Stroustrup) Like Attach, but break before function
+    "               definitions, and .else..
+    " BS_Allman     (in configuration: Allman) Always break before braces.
+    " BS_GNU        (in configuration: GNU) Always break before braces and add an extra level
+    "               of indentation to braces of control statements, not to those of class,
+    "               function or other definitions.
+    let g:clang_format#style_options = {
+                \ "BasedOnStyle" : "WebKit",
+                \ "AccessModifierOffset" : -4,
+                \ "UseTab" : "Never",
+                \ "IndentWidth" : 4,
+                \ "TabWidth" : 4,
+                \ "ColumnLimit" : 0,
+                \ "AlignTrailingComments" : "true",
+                \ "AllowShortIfStatementsOnASingleLine" : "false",
+                \ "AllowShortLoopsOnASingleLine" : "false",
+                \ "AlwaysBreakTemplateDeclarations" : "true",
+                \ "BreakBeforeBraces" : "Allman",
+                \ "SpaceBeforeAssignmentOperators" : "true",
+                \ "IndentCaseLabels" : "true",
+                \ "Standard" : "Auto"}
 
-" map to <Leader>cf in C++ code
-autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
-" If you install vim-operator-user
-autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+    " map to <Leader>cf in C++ code
+    autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+    autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+    " If you install vim-operator-user
+    autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+endif
 " }
 
 " autoload_cscope {
@@ -1123,30 +1222,49 @@ Bundle 'vim-scripts/autoload_cscope.vim'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tools
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:itchyny_calendar_enable = 1
 " Calendar {
 " A calendar application for Vim
-Bundle 'itchyny/calendar.vim'
-let g:calendar_google_calendar = 1
-let g:calendar_google_task = 1
+if g:itchyny_calendar
+    Bundle 'itchyny/calendar.vim'
+    let g:calendar_google_calendar = 1
+    let g:calendar_google_task = 1
+endif
 " }
 
+let g:vim_browser_enable = 1
 " browser {
 " This plugin provides vim with web browsing and html formatting capabilities.
-Bundle 'vim-scripts/browser.vim'
+if g:vim_browser_enable
+    Bundle 'vim-scripts/browser.vim'
+endif
 " }
 
-" w3m web browser
-Bundle 'yuratomo/w3m.vim'
+let g:w3m_browser_enable = 1
+" w3m web browser {
+if g:w3m_browser_enable
+    Bundle 'yuratomo/w3m.vim'
+endif
+" }
 
+let g:easyclip_enable = 1
 " easyclip {
 " Simplified clipboard functionality for Vim
-Bundle 'svermeulen/vim-easyclip'
-let g:EasyClipAutoFormat = 1
-let g:EasyClipShareYanks = 1
+if g:easyclip_enable
+    Bundle 'svermeulen/vim-easyclip'
+    let g:EasyClipAutoFormat = 1
+    let g:EasyClipShareYanks = 1
+endif
 " }
 
-" Gist
+let g:vim_gist_enable = 1
+" Gist {
 " Creating gists (http://gist.github.com).
 " It require 'mattn/gist-vim'
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
+if g:vim_gist_enable
+    Bundle 'mattn/webapi-vim'
+    Bundle 'mattn/gist-vim'
+endif
+" }
+
