@@ -1223,7 +1223,7 @@ Bundle 'vim-scripts/autoload_cscope.vim'
 " Tools
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:itchyny_calendar_enable = 1
+let g:itchyny_calendar = 1
 " Calendar {
 " A calendar application for Vim
 if g:itchyny_calendar_enable
