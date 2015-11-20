@@ -917,7 +917,7 @@ endif
 let g:tmux_navigator_enable = 0
 " tmux-navigator {
 " For tmux navigator Ctrl-hjkl
-if g:tmux_navigator_enable = 0
+if g:tmux_navigator_enable
     Bundle 'christoomey/vim-tmux-navigator'
 endif
 " }
@@ -1000,7 +1000,7 @@ if g:lookupfile_enable
 endif
 " }
 
-let g:genutils_enable
+let g:genutils_enable = 1
 " genutils {
 if g:genutils_enable
     Bundle 'clones/vim-genutils'
@@ -1223,7 +1223,7 @@ Bundle 'vim-scripts/autoload_cscope.vim'
 " Tools
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:itchyny_calendar_enable = 1
+let g:itchyny_calendar = 1
 " Calendar {
 " A calendar application for Vim
 if g:itchyny_calendar
