@@ -1214,6 +1214,19 @@ if g:vim_c_enable
 endif
 " }
 
+let g:dash_vim_enable = 1
+" dash {
+" This Vim plugin will search for terms using the excellent
+" Dash.app , making API lookups simple.
+if OSX()
+    if g:dash_vim_enable
+        " A plugin for editing xml
+        Bundle 'rizzatti/dash.vim'
+    endif
+endif
+" }
+
+
 " autoload_cscope {
 " Automatically load cscope.out databases into vim when you open a C file. (headers included)
 Bundle 'vim-scripts/autoload_cscope.vim'
