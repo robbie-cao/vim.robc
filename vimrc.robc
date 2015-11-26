@@ -254,7 +254,7 @@ set foldenable                  " Auto fold code
 set splitbelow                  " Put the new window below the current
 set wildmenu                    ""
 
-set list                        " Show <tab> and eol
+set nolist                      " Show <tab> and eol
 set listchars=eol:\             " Ommit eol (not display $ at end of line)
 
 
