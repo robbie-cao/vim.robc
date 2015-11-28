@@ -1,4 +1,4 @@
-# Vim configuration
+# Vim Configuration
 
 **[Robbie Cao](<mailto: robbie.cao@gmail.com>)**
 
@@ -20,7 +20,7 @@ Thank [spf13](https://github.com/spf13) and [wklken](https://github.com/wklken) 
 1. Clone a copy to your local
 
     ```
-    $ git clone git@github.com:robbie-cao/config-vim.git
+    $ git clone git@github.com:robbie-cao/vim.robc.git
     ```
 
 2. Install dependence packages
@@ -68,3 +68,7 @@ Enjoy!
 
 ## Contribution
 If you would like to help making it better, feel free to fork it. Any patches are welcome.
+
+## About Me
+
+
