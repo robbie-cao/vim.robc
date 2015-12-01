@@ -102,12 +102,12 @@ if has('clipboard')
         set clipboard=unnamed
     endif
     " Method #1
-    nnoremap <Leader>;y :"+y<CR><CR>
-    nnoremap <Leader>;p :"+p<CR><CR>
+    nnoremap <Leader>yc :"+y<CR><CR>
+    nnoremap <Leader>pc :"+p<CR><CR>
     " Method #2
     if OSX()
-        nnoremap <Leader>;c :w !pbcopy<CR><CR>
-        nnoremap <Leader>;v :r !pbpaste<CR><CR>
+        nnoremap <Leader>yc :w !pbcopy<CR><CR>
+        nnoremap <Leader>pc :r !pbpaste<CR><CR>
     elseif LINUX()
     else
     endif
@@ -493,6 +493,11 @@ function! s:RunShellCommand(cmdline)
     silent execute '$read !'. expanded_cmdline
     1
 endfunction
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Misc
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <Leader>mp :w<cr>:!pandoc % \| lynx -stdin<cr>:redraw!<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc
