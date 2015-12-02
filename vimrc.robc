@@ -133,6 +133,12 @@ set iskeyword-=-                    " '-' is an end of word designator
 set hidden                          " Allow buffer switching without saving
 set spell                           " Spell checking on
 
+" When this option is set, the screen will not be redrawn while
+" executing macros, registers and other commands that have not been
+" typed.  Also, updating the window title is postponed.  To force an
+" update use |:redraw|.
+set lazyredraw
+
 if 0
     " Move any option you dont want here
 endif
