@@ -502,9 +502,11 @@ function! s:RunShellCommand(cmdline)
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Misc
+" Markdown Preview
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>ml :w<cr>:!pandoc % \| lynx -stdin<cr>:redraw!<cr>
+map <Leader>mx :w<cr>:!pandoc % \| lynx -stdin<cr>:redraw!<cr>
+map <Leader>me :w<cr>:!pandoc % \| links -force-html<cr>:redraw!<cr>
+map <Leader>me :w<cr>:!pandoc % \| elinks -force-html<cr>:redraw!<cr>
 map <Leader>mp :w<cr>:!pandoc % \| w3m -T text/html<cr>:redraw!<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
