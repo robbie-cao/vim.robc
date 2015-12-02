@@ -630,6 +630,14 @@ if g:vim_fugitive_enable
 endif
 " }
 
+let g:vim_gitv_enable = 1
+" gitv is a 'gitk clone' plugin for the text editor Vim. {
+if g:vim_gitv_enable
+    Bundle 'gregsexton/gitv'
+endif
+" }
+
+
 let g:vcscommand_enable = 1
 " {
 if g:vcscommand_enable
