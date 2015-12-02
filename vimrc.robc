@@ -318,7 +318,7 @@ autocmd FileType c,cpp,java,php,js,twig,xml,yml,vim autocmd BufWritePre <buffer>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " The default Leader is '\', use the following line to change to your favoriate,
 " eg, ','
-let mapLeader = ','     " Single quotation mark (') is another good option
+let mapleader = ','     " Single quotation mark (') is another good option
 
 " Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y y$
@@ -497,8 +497,8 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>mp :w<cr>:!pandoc % \| lynx -stdin<cr>:redraw!<cr>
-map <Leader>mw :w<cr>:!pandoc % \| w3m -T text/html<cr>:redraw!<cr>
+map <Leader>ml :w<cr>:!pandoc % \| lynx -stdin<cr>:redraw!<cr>
+map <Leader>mp :w<cr>:!pandoc % \| w3m -T text/html<cr>:redraw!<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Misc
