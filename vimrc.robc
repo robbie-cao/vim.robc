@@ -257,6 +257,7 @@ set scrolljump=4                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
 set gdefault                    " The /g flag on :s substitutions by default
 set foldenable                  " Auto fold code
+set foldlevel=1                 " Auto fold code
 set splitbelow                  " Put the new window below the current
 set wildmenu                    ""
 
