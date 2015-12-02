@@ -1142,15 +1142,29 @@ if g:nginx_enable
 endif
 " }
 
-let g:markdown_enable = 0
-let g:markdown_preview_enable = 0
+let g:markdown_enable = 1
 " Markdown {
 if g:markdown_enable
+    let g:tpope_vim_markdown_enable = 0
+    " Vim Markdown Runtime {
     " Vim Markdown runtime files, included syntax highlighting and filetype plugins for Markdown
-    Bundle 'tpope/vim-markdown'
-    autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-    let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
+    if g:tpope_vim_markdown_enable
+        Bundle 'tpope/vim-markdown'
+        autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+        let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
+    endif
+    " }
 
+    let g:plasticboy_vim_markdown_enable = 1
+    " Vim markdown syntax highlight {
+    " Syntax highlighting, matching rules and mappings for the original Markdown and extensions.
+    if g:plasticboy_vim_markdown_enable
+        Plugin 'plasticboy/vim-markdown'
+        let g:vim_markdown_folding_disabled = 1
+    endif
+    " }
+
+    let g:markdown_preview_enable = 0
     " Markdown Preview {
     if g:markdown_preview_enable
         Bundle 'MikeCoder/markdown-preview.vim'
@@ -1159,16 +1173,19 @@ if g:markdown_enable
     endif
     " }
 
+    let g:instant_markdown_enable = 0
     " Instant Markdown
     " https://github.com/suan/vim-instant-markdown
     " You first need to have node.js with npm installed.
     " Nodejs - https://nodejs.org/en/
     " $ [sudo] npm -g install instant-markdown-d
     " $ npm -g install instant-markdown-d
-    Bundle 'suan/vim-instant-markdown'
-    let g:instant_markdown_slow = 1
-    let g:instant_markdown_autostart = 1
+    if g:instant_markdown_enable
+        Bundle 'suan/vim-i-markdown'
+        let g:instant_markdown_slow = 1
+        let g:instant_markdown_autostart = 1
     map <Leader><Leader>mi  :InstantMarkdownPreview GitHub<CR>
+endif
 
 endif
 " }
