@@ -144,7 +144,11 @@ endif
 " 自动补全
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:ycm_enable = 1
+if OSX()
+    let g:ycm_enable = 1
+else
+    let g:ycm_enable = 0
+endif
 " YouCompleteMe
 " A fast, as-you-type, fuzzy-search code completion engine
 " 迄今为止用到的最好的自动VIM自动补全插件
