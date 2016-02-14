@@ -45,20 +45,22 @@ export SHELL=$system_shell
 echo "Step5: compile YouCompleteMe"
 echo "It will take a long time, just be patient!"
 echo "If error,you need to compile it yourself"
-if [ ! -e $CURRENT_DIR/bundle/YouCompleteMe ]; then
-    echo "cd $CURRENT_DIR/bundle/YouCompleteMe/ && bash -x install.sh --clang-completer"
+if [ -e $CURRENT_DIR/bundle/YouCompleteMe ]; then
+    "echo "cd $CURRENT_DIR/bundle/YouCompleteMe/ && bash -x install.sh --clang-completer"
+    "cd $CURRENT_DIR/bundle/YouCompleteMe/
+    echo "cd $CURRENT_DIR/bundle/YouCompleteMe/ && python install.py --clang-completer"
     cd $CURRENT_DIR/bundle/YouCompleteMe/
+    git submodule update --init --recursive
+    if [ `which clang` ]   # check system clang
+    then
+        bash -x install.sh --clang-completer --system-libclang   # use system clang
+    else
+        bash -x install.sh --clang-completer
+    fi
 fi
 
-if [ `which clang` ]   # check system clang
-then
-    bash -x install.sh --clang-completer --system-libclang   # use system clang
-else
-    bash -x install.sh --clang-completer
-fi
 
-
-#vim bk and undo dir
+# Vim backup and undo dir
 if [ ! -d /tmp/vimbk ]
 then
     mkdir -p /tmp/vimbk
