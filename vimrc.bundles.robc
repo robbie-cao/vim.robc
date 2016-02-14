@@ -29,13 +29,13 @@ call vundle#rc()
 
 " Identify platform
 silent function! OSX()
-return (has('macunix') || has('mac'))
+    return (has('macunix') || has('mac'))
 endfunction
 silent function! LINUX()
-return has('unix') && !has('macunix') && !has('win32unix')
+    return has('unix') && !has('macunix') && !has('win32unix')
 endfunction
 silent function! WINDOWS()
-return  (has('win16') || has('win32') || has('win64'))
+    return  (has('win16') || has('win32') || has('win64'))
 endfunction
 
 " Bundles
@@ -144,7 +144,7 @@ endif
 " 自动补全
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:ycm_enable = 0
+let g:ycm_enable = 1
 " YouCompleteMe
 " A fast, as-you-type, fuzzy-search code completion engine
 " 迄今为止用到的最好的自动VIM自动补全插件
@@ -629,15 +629,18 @@ let g:vim_fugitive_enable = 1
 "   :Gstatus
 "   :Gvsplit
 "   :Glog
+" Leader = '\'
 if g:vim_fugitive_enable
     Bundle 'tpope/vim-fugitive'
-    nnoremap <Leader><Leader>ge :Gdiff<CR>
-    nnoremap <Leader><Leader>gb :Gblame<CR>
-    nnoremap <Leader><Leader>gs :Gstatus<CR>
-    nnoremap <Leader><Leader>gd :Gdiff<CR>  和现有冲突
-    nnoremap <Leader><Leader>gl :Glog<CR>
-    nnoremap <Leader><Leader>gc :Gcommit<CR>
-    nnoremap <Leader><Leader>gp :Git push<CR>
+    nnoremap <Leader>gd  :Gdiff<CR>
+    nnoremap <Leader>gb  :Gblame<CR>
+    nnoremap <Leader>gs  :Gstatus<CR>
+    nnoremap <Leader>gv  :Gvdiff<CR>
+    nnoremap <Leader>gdv :Gvdiff<CR>
+    nnoremap <Leader>gl  :Glog<CR>
+    nnoremap <Leader>gc  :Gcommit<CR>
+    nnoremap <Leader>gp  :Git push<CR>
+    nnoremap <Leader>gbr :Git branch -a -vv<CR>
 endif
 " }
 
@@ -659,15 +662,24 @@ let g:vcscommand_enable = 1
 " {
 if g:vcscommand_enable
     Bundle 'vim-scripts/vcscommand.vim'
-    let b:VCSCommandMapPrefix=',v'
-    let b:VCSCommandVCSType='git'
-    nmap <Leader><Leader>vs :VCSStatus<CR>
-    nmap <Leader><Leader>vc :VCSCommit<CR>
-    nmap <Leader><Leader>vb :VCSBlame<CR>
-    nmap <Leader><Leader>va :VCSAdd<CR>
-    nmap <Leader><Leader>vd :VCSVimDiff<CR>
-    nmap <Leader><Leader>vl :VCSLog<CR>
-    nmap <Leader><Leader>vu :VCSUpdate<CR>
+    let b:VCSCommandMapPrefix='<Leader>v'
+    "Default
+    "<Leader>ca VCSAdd
+    "<Leader>cn VCSAnnotate
+    "<Leader>cN VCSAnnotate!
+    "<Leader>cc VCSCommit
+    "<Leader>cD VCSDelete
+    "<Leader>cd VCSDiff
+    "<Leader>cg VCSGotoOriginal
+    "<Leader>cG VCSGotoOriginal!
+    "<Leader>ci VCSInfo
+    "<Leader>cl VCSLog
+    "<Leader>cL VCSLock
+    "<Leader>cr VCSReview
+    "<Leader>cs VCSStatus
+    "<Leader>cu VCSUpdate
+    "<Leader>cU VCSUnlock
+    "<Leader>cv VCSVimDiff
 endif
 " }
 
