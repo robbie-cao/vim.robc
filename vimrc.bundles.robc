@@ -986,7 +986,6 @@ if g:bufexplorer_enable
     let g:bufExplorerVertSize         = 30    " New split window is n columns wide.
     let g:bufExplorerShowDirectories  = 0     " Do not show directories.
     let g:bufExplorerShowRelativePath = 1     " Show relative paths.
-    nmap <Leader>b  :BufExplorer<CR>
     nmap <Leader>be :BufExplorer<CR>
 endif
 " }
