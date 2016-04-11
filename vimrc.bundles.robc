@@ -1310,6 +1310,15 @@ Bundle 'vim-scripts/autoload_cscope.vim'
 " Tools
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:drawit_enable = 1
+" DrawIt {
+" DrawIt is a plugin which allows one to draw lines
+" left, right, up, down, and along both slants.
+if g:drawit_enable
+    Bundle 'vim-scripts/DrawIt'
+endif
+" }
+
 let g:itchyny_calendar_enable = 1
 " Calendar {
 " A calendar application for Vim
