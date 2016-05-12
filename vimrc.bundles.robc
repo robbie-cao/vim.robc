@@ -1210,9 +1210,15 @@ if g:markdown_enable
         Bundle 'suan/vim-i-markdown'
         let g:instant_markdown_slow = 1
         let g:instant_markdown_autostart = 1
-    map <Leader><Leader>mi  :InstantMarkdownPreview GitHub<CR>
+        map <Leader><Leader>mi  :InstantMarkdownPreview GitHub<CR>
+    endif
 endif
+" }
 
+let g:rst_vim_enable = 1
+" reStructuredText {
+if g:rst_vim_enable
+    Bundle 'vim-scripts/rest.vim'
 endif
 " }
 
