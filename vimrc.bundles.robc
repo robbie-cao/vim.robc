@@ -1215,10 +1215,17 @@ if g:markdown_enable
 endif
 " }
 
-let g:rst_vim_enable = 1
+let g:rest_vim_enable = 1
 " reStructuredText {
-if g:rst_vim_enable
+if g:rest_vim_enable
     Bundle 'vim-scripts/rest.vim'
+endif
+" }
+
+let g:textile_vim_enable = 1
+" Textile {
+if g:textile_vim_enable
+    Bundle 'timcharper/textile.vim'
 endif
 " }
 
