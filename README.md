@@ -24,28 +24,27 @@ Thank [spf13](https://github.com/spf13) and [wklken](https://github.com/wklken) 
     ```
 
 2. Install dependence packages
-    - ctags, ag(the_silver_searcher)
-    
+    - ctags, cscope, ag(the_silver_searcher)
     - ubuntu
 
        ```
-       $ sudo apt-get install ctags
-       $ sudo apt-get install build-essential cmake python-dev  #编译YCM自动补全插件依赖
+       $ sudo apt-get install cscope ctags
+       $ sudo apt-get install build-essential cmake python-dev  # 编译YCM自动补全插件依赖
        $ sudo apt-get install silversearcher-ag
        ```
-    
+
     - mac
 
        ```
-       $ brew install ctags
+       $ brew install ctags cscope
        $ brew install the_silver_searcher
        ```
 
 3. Run install.sh
 
     ```
-    $ cd config-vim
-    $ ./install.sh --clang-completer
+    $ cd vim.robc
+    $ ./install.sh
     ```
 
 Enjoy!
@@ -55,13 +54,15 @@ Enjoy!
 
 
 ## Know Issues
-1. MarkdownPreview has problem during Vim start after update python with brew (brew update & brew install python). [Log](http://git.io/vCjBM)
+
+1. MarkdownPreview has problem during Vim start after update python with brew (`brew update` & `brew install python`). [Log](http://git.io/vCjBM)
 2. InstantMarkdownPreview works with Firefox, but has issue with Chrome.
 
 
 
 ## TODO
-1. Move plugin enable/disable config to vimrc or a sperate config file
+
+1. Move plugin enable/disable config to vimrc or a separate config file
 2. Optimize config on file types
 3. More
 
