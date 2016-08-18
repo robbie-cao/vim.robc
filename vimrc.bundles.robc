@@ -1301,6 +1301,14 @@ if g:vim_c_enable
     Bundle 'aklt/plantuml-syntax'
 endif
 
+let g:syntax_range_enable= 1
+" SyntaxRange
+" {
+if g:syntax_range_enable
+    Bundle 'vim-scripts/SyntaxRange'
+endif
+" }
+
 let g:dash_vim_enable = 1
 " dash {
 " This Vim plugin will search for terms using the excellent
