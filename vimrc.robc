@@ -204,7 +204,7 @@ set is
 
 " Highlight the current line
 set cursorline
-hi CursorLine   term=reverse cterm=NONE ctermbg=darkred     ctermfg=white guibg=darkred guifg=white
+hi CursorLine   term=reverse cterm=NONE ctermbg=darkcyan ctermfg=white guibg=darkred guifg=white
 " Highlight the current column
 set cursorcolumn
 hi CursorColumn term=reverse cterm=NONE ctermbg=darkmagenta ctermfg=white guibg=darkred guifg=white
