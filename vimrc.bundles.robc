@@ -1284,6 +1284,13 @@ if g:vim_c_enable
 endif
 " }
 
+" Slumlord is built atop the wang-hardeningly awesome plantuml.
+" It gives you a "live preview" of your UML diagrams when you save.
+let g:vim_slumlord_enable = 0
+if g:vim_slumlord_enable
+    Plugin 'scrooloose/vim-slumlord'
+endif
+
 " Syntax file for PlantUML - http://plantuml.com
 "
 " The filetype will be set to plantuml for *.pu, *.uml or *.plantuml
