@@ -1334,6 +1334,11 @@ endif
 Bundle 'vim-scripts/autoload_cscope.vim'
 " }
 
+" logcat {
+" Highlights for Android log files
+Bundle 'naseer/logcat'
+" }
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tools
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
