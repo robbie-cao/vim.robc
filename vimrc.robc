@@ -131,7 +131,7 @@ set iskeyword-=#                    " '#' is an end of word designator
 set iskeyword-=-                    " '-' is an end of word designator
 
 set hidden                          " Allow buffer switching without saving
-set spell                           " Spell checking on
+set nospell                         " Spell checking off
 
 " When this option is set, the screen will not be redrawn while
 " executing macros, registers and other commands that have not been
@@ -140,7 +140,7 @@ set spell                           " Spell checking on
 set lazyredraw
 
 if 0
-    " Move any option you dont want here
+    " Move any option you don't want here
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
