@@ -1397,3 +1397,11 @@ if g:vim_gist_enable
 endif
 " }
 
+let g:bitbake_enable = 1
+" bitbake {
+" Plugin to interact with Yocto bitbake-based recipes
+if g:bitbake_enable
+    Bundle 'kergoth/vim-bitbake'
+endif
+" }
+
