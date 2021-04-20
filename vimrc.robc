@@ -275,7 +275,7 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Text and Formatting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set ffs=mac,unix,dos            " File format detection
+set ffs=unix,mac,dos            " File format detection
 
 set nowrap                      " Not wrap long lines, 'set wrap' if need
 set autoindent                  " Auto indent
