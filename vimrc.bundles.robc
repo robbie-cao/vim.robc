@@ -1454,6 +1454,23 @@ if g:LeaderF_enable
 endif
 " }
 
+let g:fzf_enable = 1
+" fzf {
+if g:fzf_enable
+    Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plugin 'junegunn/fzf.vim'
+	" Open files in horizontal split
+	nnoremap zs :call fzf#run({
+	\   'down': '40%',
+	\   'sink': 'botright split' })<CR>
+
+	" Open files in vertical horizontal split
+	nnoremap zv :call fzf#run({
+	\   'right': winwidth('.') / 2,
+	\   'sink':  'vertical botright split' })<CR>
+endif
+" }
+
 let g:fzf_rg_enable = 1
 " fzf-ripgrep {
 " A fzf + ripgrep wrapper for vim
