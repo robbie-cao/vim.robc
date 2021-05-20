@@ -1453,3 +1453,17 @@ if g:LeaderF_enable
 	noremap fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 endif
 " }
+
+let g:fzf_rg_enable = 1
+" fzf-ripgrep {
+" A fzf + ripgrep wrapper for vim
+" Key bindings
+" CTRL-Q: Send the current search result to the quickfix window.
+" Common fzf key-bindings:
+" CTRL-T (new tab), CTRL-X (split), CTRL-V (vsplit)
+" CTRL-/ to toggle preview (or g:fzf_ripgrep_keybindings['toggle-preview'])
+if g:fzf_rg_enable
+    Bundle 'wookayin/fzf-ripgrep.vim'
+endif
+" }
+
