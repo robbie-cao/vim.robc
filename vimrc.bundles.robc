@@ -78,7 +78,7 @@ com! -nargs=+ UnBundle call UnBundle(<args>)
 "   :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
 Bundle 'gmarik/vundle'
 
-let g:syntastic_enabled = 1
+let g:syntastic_enabled = 0
 " Syntastic {
 " Syntax checking
 if g:syntastic_enabled
@@ -282,7 +282,7 @@ let g:delimitMate = 1
 " Automatic closing of quotes, parenthesis, brackets, etc
 if g:delimitMate
     Bundle 'Raimondi/delimitMate'
-    let delimitMate_expand_cr = 1
+    let delimitMate_expand_cr = 0
 endif
 " }
 
@@ -868,7 +868,7 @@ endif
 " }
 
 
-let g:ctrlspace_enable = 1
+let g:ctrlspace_enable = 0
 " Vim Workspace Controller {
 if g:ctrlspace_enable
     Bundle "szw/vim-ctrlspace"
@@ -1019,7 +1019,7 @@ if g:matchit_enable
 endif
 " }
 
-let g:lookupfile_enable = 1
+let g:lookupfile_enable = 0
 " Lookupfile {
 if g:lookupfile_enable
     Bundle 'vim-scripts/lookupfile'
@@ -1168,7 +1168,7 @@ if g:nginx_enable
 endif
 " }
 
-let g:markdown_enable = 1
+let g:markdown_enable = 0
 " Markdown {
 if g:markdown_enable
     let g:tpope_vim_markdown_enable = 0
@@ -1215,14 +1215,14 @@ if g:markdown_enable
 endif
 " }
 
-let g:rest_vim_enable = 1
+let g:rest_vim_enable = 0
 " reStructuredText {
 if g:rest_vim_enable
     Bundle 'vim-scripts/rest.vim'
 endif
 " }
 
-let g:textile_vim_enable = 1
+let g:textile_vim_enable = 0
 " Textile {
 if g:textile_vim_enable
     Bundle 'timcharper/textile.vim'
@@ -1291,6 +1291,7 @@ if g:vim_slumlord_enable
     Plugin 'scrooloose/vim-slumlord'
 endif
 
+let g:plantuml_enable = 1
 " Syntax file for PlantUML - http://plantuml.com
 "
 " The filetype will be set to plantuml for *.pu, *.uml or *.plantuml
@@ -1304,7 +1305,7 @@ endif
 " You can change the name of this file by setting g:plantuml_executable_script
 "
 " plantuml {
-if g:vim_c_enable
+if g:plantuml_enable
     Bundle 'aklt/plantuml-syntax'
 endif
 
@@ -1316,7 +1317,7 @@ if g:syntax_range_enable
 endif
 " }
 
-let g:dash_vim_enable = 1
+let g:dash_vim_enable = 0
 " dash {
 " This Vim plugin will search for terms using the excellent
 " Dash.app , making API lookups simple.
@@ -1331,19 +1332,25 @@ endif
 
 " autoload_cscope {
 " Automatically load cscope.out databases into vim when you open a C file. (headers included)
-Bundle 'vim-scripts/autoload_cscope.vim'
+let g:autoload_cscope = 0
+if g:autoload_cscope
+    Bundle 'vim-scripts/autoload_cscope.vim'
+endif
 " }
 
 " logcat {
 " Highlights for Android log files
-Bundle 'naseer/logcat'
+let g:logcat_enable = 0
+if g:logcat_enable
+    Bundle 'naseer/logcat'
+endif
 " }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tools
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:drawit_enable = 1
+let g:drawit_enable = 0
 " DrawIt {
 " DrawIt is a plugin which allows one to draw lines
 " left, right, up, down, and along both slants.
@@ -1352,7 +1359,7 @@ if g:drawit_enable
 endif
 " }
 
-let g:itchyny_calendar_enable = 1
+let g:itchyny_calendar_enable = 0
 " Calendar {
 " A calendar application for Vim
 if g:itchyny_calendar_enable
@@ -1362,7 +1369,7 @@ if g:itchyny_calendar_enable
 endif
 " }
 
-let g:vim_browser_enable = 1
+let g:vim_browser_enable = 0
 " browser {
 " This plugin provides vim with web browsing and html formatting capabilities.
 if g:vim_browser_enable
@@ -1370,7 +1377,7 @@ if g:vim_browser_enable
 endif
 " }
 
-let g:w3m_browser_enable = 1
+let g:w3m_browser_enable = 0
 " w3m web browser {
 if g:w3m_browser_enable
     Bundle 'yuratomo/w3m.vim'
@@ -1387,7 +1394,7 @@ if g:easyclip_enable
 endif
 " }
 
-let g:vim_gist_enable = 1
+let g:vim_gist_enable = 0
 " Gist {
 " Creating gists (http://gist.github.com).
 " It require 'mattn/gist-vim'
