@@ -532,7 +532,7 @@ endif
 " 快速搜索
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:ctrlp_enable = 1
+let g:ctrlp_enable = 0
 " ctrlp {
 " 文件搜索
 if g:ctrlp_enable
@@ -1446,6 +1446,8 @@ if g:LeaderF_enable
 	"noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
 	noremap gb :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
 	noremap gr :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
+    noremap grl :Leaderf! --left --stayOpen rg -e <C-R>=expand("<cword>")<CR><CR>
+    noremap grr :Leaderf! --right --stayOpen rg -e <C-R>=expand("<cword>")<CR><CR>
 	" Search visually selected text literally
 	xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
 	noremap go :<C-U>Leaderf! rg --recall<CR>
@@ -1488,6 +1490,14 @@ let g:fzf_rg_enable = 1
 " CTRL-/ to toggle preview (or g:fzf_ripgrep_keybindings['toggle-preview'])
 if g:fzf_rg_enable
     Bundle 'wookayin/fzf-ripgrep.vim'
+endif
+" }
+
+let g:groovy_enable = 1
+" groovy {
+" A collection of useful features for working in the Groovy language
+if g:groovy_enable
+    Bundle 'thecodesmith/vim-groovy'
 endif
 " }
 
