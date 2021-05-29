@@ -1477,6 +1477,14 @@ if g:fzf_enable
 	nnoremap zv :call fzf#run({
 	\   'right': winwidth('.') / 2,
 	\   'sink':  'vertical botright split' })<CR>
+    command! -bang -complete=dir -nargs=? LS
+    \   call fzf#run(fzf#wrap({'source': 'ls', 'dir': <q-args>}, <bang>0))
+    " See `man fzf-tmux` for available options
+    if exists('$TMUX')
+        let g:fzf_layout = { 'tmux': '-p90%,60%' }
+    else
+        let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+    endif
 endif
 " }
 
