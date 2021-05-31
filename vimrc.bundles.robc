@@ -395,6 +395,21 @@ if g:deoplete_ennabled
 endif
 " }
 
+let g:defx_ennabled = 1
+" defx {
+" Dark powered plugin for Neovim/Vim to browse files.
+" It replaces the deprecated vimfiler plugin.
+if g:defx_ennabled
+	if has('nvim')
+		Bundle 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+	else
+		Bundle 'Shougo/defx.nvim'
+		"Bundle 'roxma/nvim-yarp'
+		"Bundle 'roxma/vim-hug-neovim-rpc'
+	endif
+endif
+" }
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 快速编码
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -914,7 +929,7 @@ if g:minibufferexpl_enable
 endif
 " }
 
-let g:tagbar_enable = 1
+let g:tagbar_enable = 0
 " 标签导航
 " tagbar {
 if g:tagbar_enable
