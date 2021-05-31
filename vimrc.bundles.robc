@@ -301,7 +301,7 @@ if g:closetag_html_style_enable
 endif
 " }
 
-let g:neocomplete_ennabled = 1
+let g:neocomplete_ennabled = 0
 " NeoComplete {
 " Another plugin for code completeion.
 " It provides keyword completion system by maintaining a cache of keywords in the current buffer.
@@ -377,6 +377,21 @@ if g:neocomplete_ennabled
     " For perlomni.vim setting.
     " https://github.com/c9s/perlomni.vim
     let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+endif
+" }
+
+let g:deoplete_ennabled = 1
+" deomplete {
+" Dark powered asynchronous completion framework for Neovim/Vim8
+if g:deoplete_ennabled
+	if has('nvim')
+		Bundle 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+	else
+		Bundle 'Shougo/deoplete.nvim'
+		Bundle 'roxma/nvim-yarp'
+		Bundle 'roxma/vim-hug-neovim-rpc'
+	endif
+	let g:deoplete#enable_at_startup = 1
 endif
 " }
 
