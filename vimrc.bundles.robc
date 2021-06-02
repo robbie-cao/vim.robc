@@ -1498,6 +1498,7 @@ let g:fzf_enable = 1
 if g:fzf_enable
     Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plugin 'junegunn/fzf.vim'
+    noremap zf :<C-U>FZF!<CR>
 	" Open files in horizontal split
 	nnoremap zs :call fzf#run({
 	\   'down': '40%',
