@@ -1498,7 +1498,17 @@ let g:fzf_enable = 1
 if g:fzf_enable
     Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plugin 'junegunn/fzf.vim'
-    noremap zf :<C-U>FZF!<CR>
+
+	" Preview window on the upper side of the window with 40% height,
+	" hidden by default, ctrl-/ to toggle
+	"let g:fzf_preview_window = ['up:40%:hidden', 'ctrl-/']
+	" Preview window on the right with 50% width,  CTRL-/ will toggle
+	" preview window.
+	let g:fzf_preview_window = ['right:90%', 'ctrl-/']
+    "noremap zf :<C-U>FZF!<CR>
+    nnoremap zf :call fzf#run({
+                \   'down': '80%',
+                \   'sink': 'botright' })<CR>
 	" Open files in horizontal split
 	nnoremap zs :call fzf#run({
 	\   'down': '40%',
