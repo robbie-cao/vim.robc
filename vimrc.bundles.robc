@@ -380,7 +380,7 @@ if g:neocomplete_ennabled
 endif
 " }
 
-let g:deoplete_ennabled = 1
+let g:deoplete_ennabled = 0
 " deomplete {
 " Dark powered asynchronous completion framework for Neovim/Vim8
 if g:deoplete_ennabled
@@ -1508,7 +1508,7 @@ if g:fzf_enable
     "noremap zf :<C-U>FZF!<CR>
     nnoremap zf :call fzf#run({
                 \   'down': '80%',
-                \   'sink': 'botright' })<CR>
+                \   'sink': 'e' })<CR>
 	" Open files in horizontal split
 	nnoremap zs :call fzf#run({
 	\   'down': '40%',
@@ -1539,6 +1539,14 @@ let g:fzf_rg_enable = 1
 " CTRL-/ to toggle preview (or g:fzf_ripgrep_keybindings['toggle-preview'])
 if g:fzf_rg_enable
     Bundle 'wookayin/fzf-ripgrep.vim'
+endif
+" }
+
+let g:ranger = 1
+" ranger {
+" A console file manager with VI key bindings.
+if g:ranger
+    Bundle 'francoiscabrol/ranger.vim'
 endif
 " }
 
