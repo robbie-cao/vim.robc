@@ -1547,6 +1547,7 @@ let g:ranger = 1
 " A console file manager with VI key bindings.
 if g:ranger
     Bundle 'francoiscabrol/ranger.vim'
+    noremap zr :Ranger<CR>
 endif
 " }
 
