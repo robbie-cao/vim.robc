@@ -859,7 +859,7 @@ let g:taglist_enable = 1
 " programming languages.
 " 使用tagbar和ctrlp-funky可以直接快速跳转函数和变量位置,taglist有些多余
 if g:taglist_enable
-    Bundle 'vim-scripts/taglist.vim'
+    Bundle 'yegappan/taglist'
 
     if &diff
         " Don't auto pen when compare two files
