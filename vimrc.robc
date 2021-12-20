@@ -202,6 +202,8 @@ set mat=5
 " Imediately show the search result
 set is
 
+" Highlight column
+set colorcolumn=80
 " Highlight the current line
 set cursorline
 hi CursorLine   term=reverse cterm=NONE ctermbg=darkcyan ctermfg=white guibg=darkred guifg=white
