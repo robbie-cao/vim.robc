@@ -361,6 +361,9 @@ map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
 cmap cwd lcd %:p:h
 cmap cd. lcd %:p:h
 
+" w!! to sudo & write a file
+cmap w!! w !sudo tee > /dev/null %
+
 " Visual shifting (does not exit Visual mode)
 vnoremap < <gv
 vnoremap > >gv
